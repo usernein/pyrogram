@@ -18,8 +18,8 @@
 
 from typing import List
 
-from pyrogram.api import functions, types
-from pyrogram.client.ext import BaseClient
+from jonagram.api import functions, types
+from jonagram.client.ext import BaseClient
 from ...types.inline_mode import InlineQueryResult
 
 
@@ -84,7 +84,7 @@ class AnswerInlineQuery(BaseClient):
         Example:
             .. code-block:: python
 
-                from pyrogram import InlineQueryResultArticle, InputTextMessageContent
+                from jonagram import InlineQueryResultArticle, InputTextMessageContent
 
                 app.answer_inline_query(
                     inline_query_id,

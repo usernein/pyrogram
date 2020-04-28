@@ -1,12 +1,12 @@
 Available Methods
 =================
 
-This page is about Pyrogram methods. All the methods listed here are bound to a :class:`~pyrogram.Client` instance.
+This page is about Pyrogram methods. All the methods listed here are bound to a :class:`~jonagram.Client` instance.
 
 .. code-block:: python
     :emphasize-lines: 6
 
-    from pyrogram import Client
+    from jonagram import Client
 
     app = Client("my_account")
 
@@ -19,7 +19,7 @@ This page is about Pyrogram methods. All the methods listed here are bound to a 
 
 -----
 
-.. currentmodule:: pyrogram.Client
+.. currentmodule:: jonagram.Client
 
 Utilities
 ---------

@@ -24,9 +24,9 @@ from datetime import datetime
 from threading import Event
 from typing import Union
 
-import pyrogram
-from pyrogram.client.ext import BaseClient, FileData, utils
-from pyrogram.errors import FileIdInvalid
+import jonagram
+from jonagram.client.ext import BaseClient, FileData, utils
+from jonagram.errors import FileIdInvalid
 
 DEFAULT_DOWNLOAD_DIR = "downloads/"
 
@@ -34,7 +34,7 @@ DEFAULT_DOWNLOAD_DIR = "downloads/"
 class DownloadMedia(BaseClient):
     def download_media(
         self,
-        message: Union["pyrogram.Message", str],
+        message: Union["jonagram.Message", str],
         file_ref: str = None,
         file_name: str = DEFAULT_DOWNLOAD_DIR,
         block: bool = True,
@@ -114,7 +114,7 @@ class DownloadMedia(BaseClient):
         mime_type = None
         date = None
 
-        if isinstance(message, pyrogram.Message):
+        if isinstance(message, jonagram.Message):
             for kind in available_media:
                 media = getattr(message, kind, None)
 

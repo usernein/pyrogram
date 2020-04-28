@@ -16,15 +16,15 @@
 #  You should have received a copy of the GNU Lesser General Public License
 #  along with Pyrogram.  If not, see <http://www.gnu.org/licenses/>.
 
-from pyrogram.api.types import InputPhoneContact as RawInputPhoneContact
+from jonagram.api.types import InputPhoneContact as RawInputPhoneContact
 
-from pyrogram.session.internals import MsgId
+from jonagram.session.internals import MsgId
 from ..object import Object
 
 
 class InputPhoneContact(Object):
     """A Phone Contact to be added in your Telegram address book.
-    It is intended to be used with :meth:`~pyrogram.Client.add_contacts()`
+    It is intended to be used with :meth:`~jonagram.Client.add_contacts()`
 
     Parameters:
         phone (``str``):

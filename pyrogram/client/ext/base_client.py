@@ -24,7 +24,7 @@ from pathlib import Path
 from queue import Queue
 from threading import Lock
 
-from pyrogram import __version__
+from jonagram import __version__
 from ..parser import Parser
 from ...session.internals import MsgId
 

@@ -16,14 +16,14 @@
 #  You should have received a copy of the GNU Lesser General Public License
 #  along with Pyrogram.  If not, see <http://www.gnu.org/licenses/>.
 
-import pyrogram
-from pyrogram.api import functions, types
-from pyrogram.client.ext import BaseClient, utils
-from pyrogram.client.types import (
+import jonagram
+from jonagram.api import functions, types
+from jonagram.client.ext import BaseClient, utils
+from jonagram.client.types import (
     InputMediaPhoto, InputMediaVideo, InputMediaAudio,
     InputMediaAnimation, InputMediaDocument
 )
-from pyrogram.client.types.input_media import InputMedia
+from jonagram.client.types.input_media import InputMedia
 
 
 class EditInlineMedia(BaseClient):
@@ -31,7 +31,7 @@ class EditInlineMedia(BaseClient):
         self,
         inline_message_id: str,
         media: InputMedia,
-        reply_markup: "pyrogram.InlineKeyboardMarkup" = None
+        reply_markup: "jonagram.InlineKeyboardMarkup" = None
     ) -> bool:
         """Edit inline animation, audio, document, photo or video messages.
 
@@ -55,7 +55,7 @@ class EditInlineMedia(BaseClient):
         Example:
             .. code-block:: python
 
-                from pyrogram import InputMediaPhoto, InputMediaVideo, InputMediaAudio
+                from jonagram import InputMediaPhoto, InputMediaVideo, InputMediaAudio
 
                 # Bots only
 

@@ -20,9 +20,9 @@ import logging
 import time
 from typing import Union, Iterable, List
 
-import pyrogram
-from pyrogram.api import functions, types
-from pyrogram.errors import FloodWait
+import jonagram
+from jonagram.api import functions, types
+from jonagram.errors import FloodWait
 from ...ext import BaseClient, utils
 
 log = logging.getLogger(__name__)
@@ -38,7 +38,7 @@ class GetMessages(BaseClient):
         message_ids: Union[int, Iterable[int]] = None,
         reply_to_message_ids: Union[int, Iterable[int]] = None,
         replies: int = 1
-    ) -> Union["pyrogram.Message", List["pyrogram.Message"]]:
+    ) -> Union["jonagram.Message", List["jonagram.Message"]]:
         """Get one or more messages from a chat by using message identifiers.
 
         You can retrieve up to 200 messages at once.
@@ -72,10 +72,10 @@ class GetMessages(BaseClient):
             .. code-block:: python
 
                 # Get one message
-                app.get_messages("pyrogramchat", 51110)
+                app.get_messages("jonagramchat", 51110)
 
                 # Get more than one message (list of messages)
-                app.get_messages("pyrogramchat", [44625, 51110])
+                app.get_messages("jonagramchat", [44625, 51110])
 
                 # Get message by ignoring any replied-to message
                 app.get_messages(chat_id, message_id, replies=0)

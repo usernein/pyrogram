@@ -16,7 +16,7 @@
 #  You should have received a copy of the GNU Lesser General Public License
 #  along with Pyrogram.  If not, see <http://www.gnu.org/licenses/>.
 
-from pyrogram.api import types
+from jonagram.api import types
 from .inline_query_result import InlineQueryResult
 from ..bots_and_keyboards import InlineKeyboardMarkup
 from ..input_message_content import InputMessageContent

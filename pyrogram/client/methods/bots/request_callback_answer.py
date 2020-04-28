@@ -18,8 +18,8 @@
 
 from typing import Union
 
-from pyrogram.api import functions
-from pyrogram.client.ext import BaseClient
+from jonagram.api import functions
+from jonagram.client.ext import BaseClient
 
 
 class RequestCallbackAnswer(BaseClient):

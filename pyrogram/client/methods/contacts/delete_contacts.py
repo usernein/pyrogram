@@ -18,8 +18,8 @@
 
 from typing import List
 
-from pyrogram.api import functions, types
-from pyrogram.errors import PeerIdInvalid
+from jonagram.api import functions, types
+from jonagram.errors import PeerIdInvalid
 from ...ext import BaseClient
 
 

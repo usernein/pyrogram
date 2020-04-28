@@ -26,14 +26,14 @@ from os import urandom
 from queue import Queue
 from threading import Event, Thread
 
-import pyrogram
-from pyrogram import __copyright__, __license__, __version__
-from pyrogram.api import functions, types, core
-from pyrogram.api.all import layer
-from pyrogram.api.core import Message, TLObject, MsgContainer, Long, FutureSalt, Int
-from pyrogram.connection import Connection
-from pyrogram.crypto import AES, KDF
-from pyrogram.errors import RPCError, InternalServerError, AuthKeyDuplicated
+import jonagram
+from jonagram import __copyright__, __license__, __version__
+from jonagram.api import functions, types, core
+from jonagram.api.all import layer
+from jonagram.api.core import Message, TLObject, MsgContainer, Long, FutureSalt, Int
+from jonagram.connection import Connection
+from jonagram.crypto import AES, KDF
+from jonagram.errors import RPCError, InternalServerError, AuthKeyDuplicated
 from .internals import MsgId, MsgFactory
 
 log = logging.getLogger(__name__)
@@ -72,7 +72,7 @@ class Session:
 
     def __init__(
         self,
-        client: pyrogram,
+        client: jonagram,
         dc_id: int,
         auth_key: bytes,
         is_media: bool = False,

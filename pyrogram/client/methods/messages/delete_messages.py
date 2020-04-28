@@ -18,8 +18,8 @@
 
 from typing import Union, Iterable
 
-from pyrogram.api import functions, types
-from pyrogram.client.ext import BaseClient
+from jonagram.api import functions, types
+from jonagram.client.ext import BaseClient
 
 
 class DeleteMessages(BaseClient):

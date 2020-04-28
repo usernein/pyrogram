@@ -18,7 +18,7 @@
 
 from typing import Union
 
-from pyrogram.api import functions, types
+from jonagram.api import functions, types
 from ...ext import BaseClient
 from ...types.user_and_chats import Chat, ChatPermissions
 
@@ -60,7 +60,7 @@ class RestrictChatMember(BaseClient):
 
                 from time import time
 
-                from pyrogram import ChatPermissions
+                from jonagram import ChatPermissions
 
                 # Completely restrict chat member (mute) forever
                 app.restrict_chat_member(chat_id, user_id, ChatPermissions())

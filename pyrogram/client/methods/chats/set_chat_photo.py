@@ -19,7 +19,7 @@
 import os
 from typing import Union
 
-from pyrogram.api import functions, types
+from jonagram.api import functions, types
 from ...ext import BaseClient, utils
 
 

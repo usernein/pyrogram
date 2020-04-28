@@ -18,7 +18,7 @@
 
 from typing import Union
 
-from pyrogram.api import types
+from jonagram.api import types
 from .input_message_content import InputMessageContent
 from ...parser import Parser
 

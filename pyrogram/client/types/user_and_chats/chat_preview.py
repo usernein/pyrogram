@@ -18,8 +18,8 @@
 
 from typing import List
 
-import pyrogram
-from pyrogram.api import types
+import jonagram
+from jonagram.api import types
 from ..messages_and_media import Photo
 from ..object import Object
 from ..user_and_chats.user import User
@@ -48,7 +48,7 @@ class ChatPreview(Object):
     def __init__(
         self,
         *,
-        client: "pyrogram.BaseClient" = None,
+        client: "jonagram.BaseClient" = None,
         title: str,
         type: str,
         members_count: int,

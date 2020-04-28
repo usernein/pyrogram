@@ -18,8 +18,8 @@
 
 from typing import Callable
 
-import pyrogram
-from pyrogram.client.filters.filter import Filter
+import jonagram
+from jonagram.client.filters.filter import Filter
 from ...ext import BaseClient
 
 
@@ -30,10 +30,10 @@ class OnUserStatus(BaseClient):
         group: int = 0
     ) -> callable:
         """Decorator for handling user status updates.
-        This does the same thing as :meth:`~pyrogram.Client.add_handler` using the :obj:`~pyrogram.UserStatusHandler`.
+        This does the same thing as :meth:`~jonagram.Client.add_handler` using the :obj:`~jonagram.UserStatusHandler`.
 
         Parameters:
-            filters (:obj:`~pyrogram.Filters`, *optional*):
+            filters (:obj:`~jonagram.Filters`, *optional*):
                 Pass one or more filters to allow only a subset of UserStatus updated to be passed in your function.
 
             group (``int``, *optional*):
@@ -41,11 +41,11 @@ class OnUserStatus(BaseClient):
         """
 
         def decorator(func: Callable) -> Callable:
-            if isinstance(self, pyrogram.Client):
-                self.add_handler(pyrogram.UserStatusHandler(func, filters), group)
+            if isinstance(self, jonagram.Client):
+                self.add_handler(jonagram.UserStatusHandler(func, filters), group)
             elif isinstance(self, Filter) or self is None:
                 func.handler = (
-                    pyrogram.UserStatusHandler(func, self),
+                    jonagram.UserStatusHandler(func, self),
                     group if filters is None else filters
                 )
 

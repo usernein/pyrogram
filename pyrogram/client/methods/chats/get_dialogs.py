@@ -20,9 +20,9 @@ import logging
 import time
 from typing import List
 
-import pyrogram
-from pyrogram.api import functions, types
-from pyrogram.errors import FloodWait
+import jonagram
+from jonagram.api import functions, types
+from jonagram.errors import FloodWait
 from ...ext import BaseClient, utils
 
 log = logging.getLogger(__name__)
@@ -34,7 +34,7 @@ class GetDialogs(BaseClient):
         offset_date: int = 0,
         limit: int = 100,
         pinned_only: bool = False
-    ) -> List["pyrogram.Dialog"]:
+    ) -> List["jonagram.Dialog"]:
         """Get a chunk of the user's dialogs.
 
         You can get up to 100 dialogs at once.
@@ -103,7 +103,7 @@ class GetDialogs(BaseClient):
             else:
                 chat_id = utils.get_peer_id(to_id)
 
-            messages[chat_id] = pyrogram.Message._parse(self, message, users, chats)
+            messages[chat_id] = jonagram.Message._parse(self, message, users, chats)
 
         parsed_dialogs = []
 
@@ -111,6 +111,6 @@ class GetDialogs(BaseClient):
             if not isinstance(dialog, types.Dialog):
                 continue
 
-            parsed_dialogs.append(pyrogram.Dialog._parse(self, dialog, messages, users, chats))
+            parsed_dialogs.append(jonagram.Dialog._parse(self, dialog, messages, users, chats))
 
-        return pyrogram.List(parsed_dialogs)
+        return jonagram.List(parsed_dialogs)

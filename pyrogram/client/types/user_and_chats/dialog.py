@@ -16,9 +16,9 @@
 #  You should have received a copy of the GNU Lesser General Public License
 #  along with Pyrogram.  If not, see <http://www.gnu.org/licenses/>.
 
-import pyrogram
+import jonagram
 
-from pyrogram.api import types
+from jonagram.api import types
 from ..object import Object
 from ..user_and_chats import Chat
 from ...ext import utils
@@ -28,7 +28,7 @@ class Dialog(Object):
     """A user's dialog.
 
     Parameters:
-        chat (:obj:`Chat <pyrogram.Chat>`):
+        chat (:obj:`Chat <jonagram.Chat>`):
             Conversation the dialog belongs to.
 
         top_message (:obj:`Message`):
@@ -50,9 +50,9 @@ class Dialog(Object):
     def __init__(
         self,
         *,
-        client: "pyrogram.BaseClient" = None,
+        client: "jonagram.BaseClient" = None,
         chat: Chat,
-        top_message: "pyrogram.Message",
+        top_message: "jonagram.Message",
         unread_messages_count: int,
         unread_mentions_count: int,
         unread_mark: bool,

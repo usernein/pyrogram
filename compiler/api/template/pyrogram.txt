@@ -1,6 +1,6 @@
 {notice}
 
-from pyrogram.api.core import Object
+from jonagram.api.core import Object
 
 
 class {class_name}(Object):

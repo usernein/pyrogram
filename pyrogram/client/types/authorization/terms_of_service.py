@@ -18,7 +18,7 @@
 
 from typing import List
 
-from pyrogram.api import types
+from jonagram.api import types
 from ..messages_and_media import MessageEntity
 from ..object import Object
 

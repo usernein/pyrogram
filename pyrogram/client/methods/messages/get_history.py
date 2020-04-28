@@ -20,10 +20,10 @@ import logging
 import time
 from typing import Union, List
 
-import pyrogram
-from pyrogram.api import functions
-from pyrogram.client.ext import utils
-from pyrogram.errors import FloodWait
+import jonagram
+from jonagram.api import functions
+from jonagram.client.ext import utils
+from jonagram.errors import FloodWait
 from ...ext import BaseClient
 
 log = logging.getLogger(__name__)
@@ -38,7 +38,7 @@ class GetHistory(BaseClient):
         offset_id: int = 0,
         offset_date: int = 0,
         reverse: bool = False
-    ) -> List["pyrogram.Message"]:
+    ) -> List["jonagram.Message"]:
         """Retrieve a chunk of the history of a chat.
 
         You can get up to 100 messages at once.
@@ -74,13 +74,13 @@ class GetHistory(BaseClient):
             .. code-block:: python
 
                 # Get the last 100 messages of a chat
-                app.get_history("pyrogramchat")
+                app.get_history("jonagramchat")
 
                 # Get the last 3 messages of a chat
-                app.get_history("pyrogramchat", limit=3)
+                app.get_history("jonagramchat", limit=3)
 
                 # Get 3 messages after skipping the first 5
-                app.get_history("pyrogramchat", offset=5, limit=3)
+                app.get_history("jonagramchat", offset=5, limit=3)
         """
 
         offset_id = offset_id or (1 if reverse else 0)

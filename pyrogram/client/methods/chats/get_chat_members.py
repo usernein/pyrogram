@@ -20,9 +20,9 @@ import logging
 import time
 from typing import Union, List
 
-import pyrogram
-from pyrogram.api import functions, types
-from pyrogram.errors import FloodWait
+import jonagram
+from jonagram.api import functions, types
+from jonagram.errors import FloodWait
 from ...ext import BaseClient
 
 log = logging.getLogger(__name__)
@@ -45,7 +45,7 @@ class GetChatMembers(BaseClient):
         limit: int = 200,
         query: str = "",
         filter: str = Filters.ALL
-    ) -> List["pyrogram.ChatMember"]:
+    ) -> List["jonagram.ChatMember"]:
         """Get a chunk of the members list of a chat.
 
         You can get up to 200 chat members at once.
@@ -97,13 +97,13 @@ class GetChatMembers(BaseClient):
             .. code-block:: python
 
                 # Get first 200 recent members
-                app.get_chat_members("pyrogramchat")
+                app.get_chat_members("jonagramchat")
 
                 # Get all administrators
-                app.get_chat_members("pyrogramchat", filter="administrators")
+                app.get_chat_members("jonagramchat", filter="administrators")
 
                 # Get all bots
-                app.get_chat_members("pyrogramchat", filter="bots")
+                app.get_chat_members("jonagramchat", filter="bots")
         """
         peer = self.resolve_peer(chat_id)
 
@@ -117,7 +117,7 @@ class GetChatMembers(BaseClient):
             members = r.full_chat.participants.participants
             users = {i.id: i for i in r.users}
 
-            return pyrogram.List(pyrogram.ChatMember._parse(self, member, users) for member in members)
+            return jonagram.List(jonagram.ChatMember._parse(self, member, users) for member in members)
         elif isinstance(peer, types.InputPeerChannel):
             filter = filter.lower()
 
@@ -151,7 +151,7 @@ class GetChatMembers(BaseClient):
                     members = r.participants
                     users = {i.id: i for i in r.users}
 
-                    return pyrogram.List(pyrogram.ChatMember._parse(self, member, users) for member in members)
+                    return jonagram.List(jonagram.ChatMember._parse(self, member, users) for member in members)
                 except FloodWait as e:
                     log.warning("Sleeping for {}s".format(e.x))
                     time.sleep(e.x)

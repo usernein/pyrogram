@@ -18,9 +18,9 @@
 
 from typing import Union, List
 
-import pyrogram
-from pyrogram.api import functions
-from pyrogram.client.ext import BaseClient
+import jonagram
+from jonagram.api import functions
+from jonagram.client.ext import BaseClient
 
 
 class GetGameHighScores(BaseClient):
@@ -29,7 +29,7 @@ class GetGameHighScores(BaseClient):
         user_id: Union[int, str],
         chat_id: Union[int, str],
         message_id: int = None
-    ) -> List["pyrogram.GameHighScore"]:
+    ) -> List["jonagram.GameHighScore"]:
         """Get data for high score tables.
 
         Parameters:
@@ -67,4 +67,4 @@ class GetGameHighScores(BaseClient):
             )
         )
 
-        return pyrogram.List(pyrogram.GameHighScore._parse(self, score, r.users) for score in r.scores)
+        return jonagram.List(jonagram.GameHighScore._parse(self, score, r.users) for score in r.scores)

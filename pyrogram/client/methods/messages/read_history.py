@@ -18,7 +18,7 @@
 
 from typing import Union
 
-from pyrogram.api import functions, types
+from jonagram.api import functions, types
 from ...ext import BaseClient
 
 
@@ -47,10 +47,10 @@ class ReadHistory(BaseClient):
             .. code-block:: python
 
                 # Mark the whole chat as read
-                app.read_history("pyrogramlounge")
+                app.read_history("jonagramlounge")
 
                 # Mark messages as read only up to the given message id
-                app.read_history("pyrogramlounge", 123456)
+                app.read_history("jonagramlounge", 123456)
         """
 
         peer = self.resolve_peer(chat_id)

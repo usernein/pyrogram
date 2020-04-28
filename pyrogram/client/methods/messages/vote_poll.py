@@ -18,9 +18,9 @@
 
 from typing import Union, List
 
-import pyrogram
-from pyrogram.api import functions
-from pyrogram.client.ext import BaseClient
+import jonagram
+from jonagram.api import functions
+from jonagram.client.ext import BaseClient
 
 
 class VotePoll(BaseClient):
@@ -29,7 +29,7 @@ class VotePoll(BaseClient):
         chat_id: Union[int, str],
         message_id: id,
         options: Union[int, List[int]]
-    ) -> "pyrogram.Poll":
+    ) -> "jonagram.Poll":
         """Vote a poll.
 
         Parameters:
@@ -64,4 +64,4 @@ class VotePoll(BaseClient):
             )
         )
 
-        return pyrogram.Poll._parse(self, r.updates[0])
+        return jonagram.Poll._parse(self, r.updates[0])

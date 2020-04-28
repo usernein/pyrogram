@@ -18,9 +18,9 @@
 
 from typing import Union
 
-import pyrogram
-from pyrogram.api import functions, types
-from pyrogram.client.ext import BaseClient
+import jonagram
+from jonagram.api import functions, types
+from jonagram.client.ext import BaseClient
 
 
 class StopPoll(BaseClient):
@@ -28,8 +28,8 @@ class StopPoll(BaseClient):
         self,
         chat_id: Union[int, str],
         message_id: int,
-        reply_markup: "pyrogram.InlineKeyboardMarkup" = None
-    ) -> "pyrogram.Poll":
+        reply_markup: "jonagram.InlineKeyboardMarkup" = None
+    ) -> "jonagram.Poll":
         """Stop a poll which was sent by you.
 
         Stopped polls can't be reopened and nobody will be able to vote in it anymore.
@@ -72,4 +72,4 @@ class StopPoll(BaseClient):
             )
         )
 
-        return pyrogram.Poll._parse(self, r.updates[0])
+        return jonagram.Poll._parse(self, r.updates[0])

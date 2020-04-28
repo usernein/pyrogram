@@ -18,8 +18,8 @@
 
 from typing import Callable
 
-import pyrogram
-from pyrogram.client.filters.filter import Filter
+import jonagram
+from jonagram.client.filters.filter import Filter
 from ...ext import BaseClient
 
 
@@ -31,11 +31,11 @@ class OnDeletedMessages(BaseClient):
     ) -> callable:
         """Decorator for handling deleted messages.
 
-        This does the same thing as :meth:`~pyrogram.Client.add_handler` using the
-        :obj:`~pyrogram.DeletedMessagesHandler`.
+        This does the same thing as :meth:`~jonagram.Client.add_handler` using the
+        :obj:`~jonagram.DeletedMessagesHandler`.
 
         Parameters:
-            filters (:obj:`~pyrogram.Filters`, *optional*):
+            filters (:obj:`~jonagram.Filters`, *optional*):
                 Pass one or more filters to allow only a subset of messages to be passed
                 in your function.
 
@@ -44,11 +44,11 @@ class OnDeletedMessages(BaseClient):
         """
 
         def decorator(func: Callable) -> Callable:
-            if isinstance(self, pyrogram.Client):
-                self.add_handler(pyrogram.DeletedMessagesHandler(func, filters), group)
+            if isinstance(self, jonagram.Client):
+                self.add_handler(jonagram.DeletedMessagesHandler(func, filters), group)
             elif isinstance(self, Filter) or self is None:
                 func.handler = (
-                    pyrogram.DeletedMessagesHandler(func, self),
+                    jonagram.DeletedMessagesHandler(func, self),
                     group if filters is None else filters
                 )
 

@@ -19,8 +19,8 @@
 from string import ascii_lowercase
 from typing import Union, Generator
 
-import pyrogram
-from pyrogram.api import types
+import jonagram
+from jonagram.api import types
 from ...ext import BaseClient
 
 
@@ -44,7 +44,7 @@ class IterChatMembers(BaseClient):
         limit: int = 0,
         query: str = "",
         filter: str = Filters.ALL
-    ) -> Generator["pyrogram.ChatMember", None, None]:
+    ) -> Generator["jonagram.ChatMember", None, None]:
         """Iterate through the members of a chat sequentially.
 
         This convenience method does the same as repeatedly calling :meth:`~Client.get_chat_members` in a loop, thus saving you
@@ -81,15 +81,15 @@ class IterChatMembers(BaseClient):
             .. code-block:: python
 
                 # Iterate though all chat members
-                for member in app.iter_chat_members("pyrogramchat"):
+                for member in app.iter_chat_members("jonagramchat"):
                     print(member.user.first_name)
 
                 # Iterate though all administrators
-                for member in app.iter_chat_members("pyrogramchat", filter="administrators"):
+                for member in app.iter_chat_members("jonagramchat", filter="administrators"):
                     print(member.user.first_name)
 
                 # Iterate though all bots
-                for member in app.iter_chat_members("pyrogramchat", filter="bots"):
+                for member in app.iter_chat_members("jonagramchat", filter="bots"):
                     print(member.user.first_name)
         """
         current = 0

@@ -19,13 +19,13 @@
 from collections import OrderedDict
 from typing import Union
 
-import pyrogram
+import jonagram
 from .html import HTML
 from .markdown import Markdown
 
 
 class Parser:
-    def __init__(self, client: Union["pyrogram.BaseClient", None]):
+    def __init__(self, client: Union["jonagram.BaseClient", None]):
         self.client = client
         self.html = HTML(client)
         self.markdown = Markdown(client)
@@ -57,7 +57,7 @@ class Parser:
             return self.html.parse(text)
 
         raise ValueError('parse_mode must be one of {} or None. Not "{}"'.format(
-            ", ".join('"{}"'.format(m) for m in pyrogram.Client.PARSE_MODES[:-1]),
+            ", ".join('"{}"'.format(m) for m in jonagram.Client.PARSE_MODES[:-1]),
             mode
         ))
 

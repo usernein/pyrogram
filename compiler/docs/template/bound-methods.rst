@@ -8,7 +8,7 @@ some of the required arguments.
 .. code-block:: python
     :emphasize-lines: 8
 
-    from pyrogram import Client
+    from jonagram import Client
 
     app = Client("my_account")
 
@@ -26,7 +26,7 @@ some of the required arguments.
 
 -----
 
-.. currentmodule:: pyrogram
+.. currentmodule:: jonagram
 
 Message
 -------

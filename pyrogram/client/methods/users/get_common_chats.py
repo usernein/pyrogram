@@ -18,8 +18,8 @@
 
 from typing import Union
 
-import pyrogram
-from pyrogram.api import functions, types
+import jonagram
+from jonagram.api import functions, types
 from ...ext import BaseClient
 
 
@@ -57,6 +57,6 @@ class GetCommonChats(BaseClient):
                 )
             )
 
-            return pyrogram.List([pyrogram.Chat._parse_chat(self, x) for x in r.chats])
+            return jonagram.List([jonagram.Chat._parse_chat(self, x) for x in r.chats])
         
         raise ValueError('The user_id "{}" doesn\'t belong to a user'.format(user_id))

@@ -18,7 +18,7 @@
 
 from typing import Union
 
-from pyrogram.api import functions
+from jonagram.api import functions
 from ...ext import BaseClient
 
 
@@ -44,7 +44,7 @@ class SetSlowMode(BaseClient):
         Example:
             .. code-block:: python
 
-                app.set_slow_mode("pyrogramchat", 60)
+                app.set_slow_mode("jonagramchat", 60)
         """
 
         self.send(

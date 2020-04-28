@@ -19,8 +19,8 @@
 from struct import pack
 from typing import List
 
-import pyrogram
-from pyrogram.api import types
+import jonagram
+from jonagram.api import types
 from .thumbnail import Thumbnail
 from ..object import Object
 from ...ext.utils import encode_file_id, encode_file_ref
@@ -64,7 +64,7 @@ class Animation(Object):
     def __init__(
         self,
         *,
-        client: "pyrogram.BaseClient" = None,
+        client: "jonagram.BaseClient" = None,
         file_id: str,
         file_ref: str,
         width: int,

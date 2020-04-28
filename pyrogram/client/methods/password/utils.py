@@ -19,7 +19,7 @@
 import hashlib
 import os
 
-from pyrogram.api import types
+from jonagram.api import types
 
 
 def btoi(b: bytes) -> int:

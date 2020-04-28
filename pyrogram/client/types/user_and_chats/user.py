@@ -19,8 +19,8 @@
 import html
 from typing import List
 
-import pyrogram
-from pyrogram.api import types
+import jonagram
+from jonagram.api import types
 from .chat_photo import ChatPhoto
 from .restriction import Restriction
 from ..object import Object
@@ -100,7 +100,7 @@ class User(Object, Update):
         phone_number (``str``, *optional*):
             User's phone number.
 
-        photo (:obj:`ChatPhoto <pyrogram.ChatPhoto>`, *optional*):
+        photo (:obj:`ChatPhoto <jonagram.ChatPhoto>`, *optional*):
             User's or bot's current profile photo. Suitable for downloads only.
 
         restrictions (List of :obj:`Restriction`, *optional*):
@@ -111,7 +111,7 @@ class User(Object, Update):
     def __init__(
         self,
         *,
-        client: "pyrogram.BaseClient" = None,
+        client: "jonagram.BaseClient" = None,
         id: int,
         is_self: bool = None,
         is_contact: bool = None,
@@ -188,7 +188,7 @@ class User(Object, Update):
             dc_id=getattr(user.photo, "dc_id", None),
             phone_number=user.phone,
             photo=ChatPhoto._parse(client, user.photo, user.id, user.access_hash),
-            restrictions=pyrogram.List([Restriction._parse(r) for r in user.restriction_reason]) or None,
+            restrictions=jonagram.List([Restriction._parse(r) for r in user.restriction_reason]) or None,
             client=client
         )
 

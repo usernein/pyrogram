@@ -35,13 +35,13 @@ from base64 import b64encode
 from struct import pack
 from typing import Union
 
-import pyrogram
-from pyrogram.api import types
-from pyrogram.client.types.object import Object
-from pyrogram.client.types.update import Update
-from pyrogram.client.types.user_and_chats import User
-from pyrogram.client.types.messages_and_media import Location
-from pyrogram.client.ext import utils
+import jonagram
+from jonagram.api import types
+from jonagram.client.types.object import Object
+from jonagram.client.types.update import Update
+from jonagram.client.types.user_and_chats import User
+from jonagram.client.types.messages_and_media import Location
+from jonagram.client.ext import utils
 
 
 class ChosenInlineResult(Object, Update):
@@ -74,11 +74,11 @@ class ChosenInlineResult(Object, Update):
     def __init__(
         self,
         *,
-        client: "pyrogram.BaseClient" = None,
+        client: "jonagram.BaseClient" = None,
         result_id: str,
         from_user: User,
         query: str,
-        location: "pyrogram.Location" = None,
+        location: "jonagram.Location" = None,
         inline_message_id: str = None,
     ):
         super().__init__(client)

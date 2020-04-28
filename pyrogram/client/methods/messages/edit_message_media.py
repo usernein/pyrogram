@@ -19,14 +19,14 @@
 import os
 from typing import Union
 
-import pyrogram
-from pyrogram.api import functions, types
-from pyrogram.client.ext import BaseClient, utils
-from pyrogram.client.types import (
+import jonagram
+from jonagram.api import functions, types
+from jonagram.client.ext import BaseClient, utils
+from jonagram.client.types import (
     InputMediaPhoto, InputMediaVideo, InputMediaAudio,
     InputMediaAnimation, InputMediaDocument
 )
-from pyrogram.client.types.input_media import InputMedia
+from jonagram.client.types.input_media import InputMedia
 
 
 class EditMessageMedia(BaseClient):
@@ -35,8 +35,8 @@ class EditMessageMedia(BaseClient):
         chat_id: Union[int, str],
         message_id: int,
         media: InputMedia,
-        reply_markup: "pyrogram.InlineKeyboardMarkup" = None
-    ) -> "pyrogram.Message":
+        reply_markup: "jonagram.InlineKeyboardMarkup" = None
+    ) -> "jonagram.Message":
         """Edit animation, audio, document, photo or video messages.
 
         If a message is a part of a message album, then it can be edited only to a photo or a video. Otherwise, the
@@ -63,7 +63,7 @@ class EditMessageMedia(BaseClient):
         Example:
             .. code-block:: python
 
-                from pyrogram import InputMediaPhoto, InputMediaVideo, InputMediaAudio
+                from jonagram import InputMediaPhoto, InputMediaVideo, InputMediaAudio
 
                 # Replace the current media with a local photo
                 app.edit_message_media(chat_id, message_id, InputMediaPhoto("new_photo.jpg"))
@@ -256,7 +256,7 @@ class EditMessageMedia(BaseClient):
 
         for i in r.updates:
             if isinstance(i, (types.UpdateEditMessage, types.UpdateEditChannelMessage)):
-                return pyrogram.Message._parse(
+                return jonagram.Message._parse(
                     self, i.message,
                     {i.id: i for i in r.users},
                     {i.id: i for i in r.chats}

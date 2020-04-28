@@ -23,9 +23,9 @@ from collections import OrderedDict
 from html.parser import HTMLParser
 from typing import Union
 
-import pyrogram
-from pyrogram.api import types
-from pyrogram.errors import PeerIdInvalid
+import jonagram
+from jonagram.api import types
+from jonagram.errors import PeerIdInvalid
 from . import utils
 
 log = logging.getLogger(__name__)
@@ -34,7 +34,7 @@ log = logging.getLogger(__name__)
 class Parser(HTMLParser):
     MENTION_RE = re.compile(r"tg://user\?id=(\d+)")
 
-    def __init__(self, client: "pyrogram.BaseClient"):
+    def __init__(self, client: "jonagram.BaseClient"):
         super().__init__()
 
         self.client = client
@@ -107,7 +107,7 @@ class Parser(HTMLParser):
 
 
 class HTML:
-    def __init__(self, client: Union["pyrogram.BaseClient", None]):
+    def __init__(self, client: Union["jonagram.BaseClient", None]):
         self.client = client
 
     def parse(self, text: str):

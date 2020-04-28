@@ -18,8 +18,8 @@
 
 from typing import Union, Iterable, List
 
-import pyrogram
-from pyrogram.api import functions, types
+import jonagram
+from jonagram.api import functions, types
 from ...ext import BaseClient
 
 
@@ -33,7 +33,7 @@ class ForwardMessages(BaseClient):
         as_copy: bool = False,
         remove_caption: bool = False,
         schedule_date: int = None
-    ) -> List["pyrogram.Message"]:
+    ) -> List["jonagram.Message"]:
         """Forward messages of any kind.
 
         Parameters:
@@ -78,13 +78,13 @@ class ForwardMessages(BaseClient):
                 :emphasize-lines: 2,5,8
 
                 # Forward a single message
-                app.forward_messages("me", "pyrogram", 20)
+                app.forward_messages("me", "jonagram", 20)
 
                 # Forward multiple messages at once
-                app.forward_messages("me", "pyrogram", [3, 20, 27])
+                app.forward_messages("me", "jonagram", [3, 20, 27])
 
                 # Forward messages as copy
-                app.forward_messages("me", "pyrogram", 20, as_copy=True)
+                app.forward_messages("me", "jonagram", 20, as_copy=True)
         """
 
         is_iterable = not isinstance(message_ids, int)
@@ -107,7 +107,7 @@ class ForwardMessages(BaseClient):
                         )
                     )
 
-            return pyrogram.List(forwarded_messages) if is_iterable else forwarded_messages[0]
+            return jonagram.List(forwarded_messages) if is_iterable else forwarded_messages[0]
         else:
             r = self.send(
                 functions.messages.ForwardMessages(
@@ -128,10 +128,10 @@ class ForwardMessages(BaseClient):
             for i in r.updates:
                 if isinstance(i, (types.UpdateNewMessage, types.UpdateNewChannelMessage, types.UpdateNewScheduledMessage)):
                     forwarded_messages.append(
-                        pyrogram.Message._parse(
+                        jonagram.Message._parse(
                             self, i.message,
                             users, chats
                         )
                     )
 
-            return pyrogram.List(forwarded_messages) if is_iterable else forwarded_messages[0]
+            return jonagram.List(forwarded_messages) if is_iterable else forwarded_messages[0]

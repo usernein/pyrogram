@@ -18,7 +18,7 @@
 
 from typing import Generator
 
-import pyrogram
+import jonagram
 from ...ext import BaseClient
 
 
@@ -27,7 +27,7 @@ class IterDialogs(BaseClient):
         self,
         offset_date: int = 0,
         limit: int = None
-    ) -> Generator["pyrogram.Dialog", None, None]:
+    ) -> Generator["jonagram.Dialog", None, None]:
         """Iterate through a user's dialogs sequentially.
 
         This convenience method does the same as repeatedly calling :meth:`~Client.get_dialogs` in a loop, thus saving

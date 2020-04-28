@@ -19,10 +19,10 @@
 import os
 from typing import Union
 
-import pyrogram
-from pyrogram.api import functions, types
-from pyrogram.client.ext import BaseClient, utils
-from pyrogram.errors import FilePartMissing
+import jonagram
+from jonagram.api import functions, types
+from jonagram.client.ext import BaseClient, utils
+from jonagram.errors import FilePartMissing
 
 
 class SendAudio(BaseClient):
@@ -41,14 +41,14 @@ class SendAudio(BaseClient):
         reply_to_message_id: int = None,
         schedule_date: int = None,
         reply_markup: Union[
-            "pyrogram.InlineKeyboardMarkup",
-            "pyrogram.ReplyKeyboardMarkup",
-            "pyrogram.ReplyKeyboardRemove",
-            "pyrogram.ForceReply"
+            "jonagram.InlineKeyboardMarkup",
+            "jonagram.ReplyKeyboardMarkup",
+            "jonagram.ReplyKeyboardRemove",
+            "jonagram.ForceReply"
         ] = None,
         progress: callable = None,
         progress_args: tuple = ()
-    ) -> Union["pyrogram.Message", None]:
+    ) -> Union["jonagram.Message", None]:
         """Send audio files.
 
         For sending voice messages, use the :obj:`send_voice()` method instead.
@@ -203,7 +203,7 @@ class SendAudio(BaseClient):
                             i,
                             (types.UpdateNewMessage, types.UpdateNewChannelMessage, types.UpdateNewScheduledMessage)
                         ):
-                            return pyrogram.Message._parse(
+                            return jonagram.Message._parse(
                                 self, i.message,
                                 {i.id: i for i in r.users},
                                 {i.id: i for i in r.chats},

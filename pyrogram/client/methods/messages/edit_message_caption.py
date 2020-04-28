@@ -18,8 +18,8 @@
 
 from typing import Union
 
-import pyrogram
-from pyrogram.client.ext import BaseClient
+import jonagram
+from jonagram.client.ext import BaseClient
 
 
 class EditMessageCaption(BaseClient):
@@ -29,8 +29,8 @@ class EditMessageCaption(BaseClient):
         message_id: int,
         caption: str,
         parse_mode: Union[str, None] = object,
-        reply_markup: "pyrogram.InlineKeyboardMarkup" = None
-    ) -> "pyrogram.Message":
+        reply_markup: "jonagram.InlineKeyboardMarkup" = None
+    ) -> "jonagram.Message":
         """Edit the caption of media messages.
 
         Parameters:

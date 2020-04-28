@@ -18,7 +18,7 @@
 
 import os
 
-from pyrogram.api import functions, types
+from jonagram.api import functions, types
 from .utils import compute_hash, compute_check, btoi, itob
 from ...ext import BaseClient
 

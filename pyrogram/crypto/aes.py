@@ -56,7 +56,7 @@ except ImportError:
     log.warning(
         "TgCrypto is missing! "
         "Pyrogram will work the same, but at a much slower speed. "
-        "More info: https://docs.pyrogram.org/topics/tgcrypto"
+        "More info: https://docs.jonagram.org/topics/tgcrypto"
     )
 
 

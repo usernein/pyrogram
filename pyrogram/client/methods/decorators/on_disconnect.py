@@ -18,7 +18,7 @@
 
 from typing import Callable
 
-import pyrogram
+import jonagram
 from ...ext import BaseClient
 
 
@@ -26,12 +26,12 @@ class OnDisconnect(BaseClient):
     def on_disconnect(self=None) -> callable:
         """Decorator for handling disconnections.
 
-        This does the same thing as :meth:`~pyrogram.Client.add_handler` using the :obj:`~pyrogram.DisconnectHandler`.
+        This does the same thing as :meth:`~jonagram.Client.add_handler` using the :obj:`~jonagram.DisconnectHandler`.
         """
 
         def decorator(func: Callable) -> Callable:
-            if isinstance(self, pyrogram.Client):
-                self.add_handler(pyrogram.DisconnectHandler(func))
+            if isinstance(self, jonagram.Client):
+                self.add_handler(jonagram.DisconnectHandler(func))
 
             return func
 

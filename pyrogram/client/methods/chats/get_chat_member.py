@@ -18,9 +18,9 @@
 
 from typing import Union
 
-import pyrogram
-from pyrogram.api import functions, types
-from pyrogram.errors import UserNotParticipant
+import jonagram
+from jonagram.api import functions, types
+from jonagram.errors import UserNotParticipant
 from ...ext import BaseClient
 
 
@@ -29,7 +29,7 @@ class GetChatMember(BaseClient):
         self,
         chat_id: Union[int, str],
         user_id: Union[int, str]
-    ) -> "pyrogram.ChatMember":
+    ) -> "jonagram.ChatMember":
         """Get information about one member of a chat.
 
         Parameters:
@@ -47,7 +47,7 @@ class GetChatMember(BaseClient):
         Example:
             .. code-block:: python
 
-                dan = app.get_chat_member("pyrogramchat", "haskell")
+                dan = app.get_chat_member("jonagramchat", "haskell")
                 print(dan)
         """
         chat = self.resolve_peer(chat_id)
@@ -64,7 +64,7 @@ class GetChatMember(BaseClient):
             users = {i.id: i for i in r.users}
 
             for member in members:
-                member = pyrogram.ChatMember._parse(self, member, users)
+                member = jonagram.ChatMember._parse(self, member, users)
 
                 if isinstance(user, types.InputPeerSelf):
                     if member.user.is_self:
@@ -84,6 +84,6 @@ class GetChatMember(BaseClient):
 
             users = {i.id: i for i in r.users}
 
-            return pyrogram.ChatMember._parse(self, r.participant, users)
+            return jonagram.ChatMember._parse(self, r.participant, users)
         else:
             raise ValueError("The chat_id \"{}\" belongs to a user".format(chat_id))

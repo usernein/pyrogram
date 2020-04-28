@@ -20,16 +20,16 @@ import logging
 import time
 from typing import List
 
-import pyrogram
-from pyrogram.api import functions
-from pyrogram.errors import FloodWait
+import jonagram
+from jonagram.api import functions
+from jonagram.errors import FloodWait
 from ...ext import BaseClient
 
 log = logging.getLogger(__name__)
 
 
 class GetContacts(BaseClient):
-    def get_contacts(self) -> List["pyrogram.User"]:
+    def get_contacts(self) -> List["jonagram.User"]:
         """Get contacts from your Telegram address book.
 
         Returns:
@@ -48,4 +48,4 @@ class GetContacts(BaseClient):
                 log.warning("get_contacts flood: waiting {} seconds".format(e.x))
                 time.sleep(e.x)
             else:
-                return pyrogram.List(pyrogram.User._parse(self, user) for user in contacts.users)
+                return jonagram.List(jonagram.User._parse(self, user) for user in contacts.users)

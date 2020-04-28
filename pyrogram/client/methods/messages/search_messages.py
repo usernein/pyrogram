@@ -18,9 +18,9 @@
 
 from typing import Union, List, Generator
 
-import pyrogram
-from pyrogram.client.ext import BaseClient, utils
-from pyrogram.api import functions, types
+import jonagram
+from jonagram.client.ext import BaseClient, utils
+from jonagram.api import functions, types
 
 
 class Filters:
@@ -54,7 +54,7 @@ def get_chunk(
     offset: int = 0,
     limit: int = 100,
     from_user: Union[int, str] = None
-) -> List["pyrogram.Message"]:
+) -> List["jonagram.Message"]:
     try:
         filter = Filters.__dict__[filter.upper()]
     except KeyError:
@@ -95,7 +95,7 @@ class SearchMessages(BaseClient):
         filter: str = "empty",
         limit: int = 0,
         from_user: Union[int, str] = None
-    ) -> Generator["pyrogram.Message", None, None]:
+    ) -> Generator["jonagram.Message", None, None]:
         """Search for text and media messages inside a specific chat.
 
         Parameters:
@@ -147,12 +147,12 @@ class SearchMessages(BaseClient):
         Example:
             .. code-block:: python
 
-                # Search for text messages in @pyrogramchat. Get the last 333 results
-                for message in app.search_messages("pyrogramchat", query="dan", limit=333):
+                # Search for text messages in @jonagramchat. Get the last 333 results
+                for message in app.search_messages("jonagramchat", query="dan", limit=333):
                     print(message.text)
 
-                # Search for photos sent by @haskell in @pyrogramchat
-                for message in app.search_messages("pyrogramchat", "", filter="photo" limit=333, from_user="haskell"):
+                # Search for photos sent by @haskell in @jonagramchat
+                for message in app.search_messages("jonagramchat", "", filter="photo" limit=333, from_user="haskell"):
                     print(message.text)
         """
         current = 0

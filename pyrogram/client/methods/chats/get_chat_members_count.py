@@ -18,7 +18,7 @@
 
 from typing import Union
 
-from pyrogram.api import functions, types
+from jonagram.api import functions, types
 from ...ext import BaseClient
 
 
@@ -42,7 +42,7 @@ class GetChatMembersCount(BaseClient):
         Example:
             .. code-block:: python
 
-                count = app.get_chat_members_count("pyrogramchat")
+                count = app.get_chat_members_count("jonagramchat")
                 print(count)
         """
         peer = self.resolve_peer(chat_id)

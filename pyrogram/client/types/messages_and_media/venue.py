@@ -16,8 +16,8 @@
 #  You should have received a copy of the GNU Lesser General Public License
 #  along with Pyrogram.  If not, see <http://www.gnu.org/licenses/>.
 
-import pyrogram
-from pyrogram.api import types
+import jonagram
+from jonagram.api import types
 from .location import Location
 from ..object import Object
 
@@ -47,7 +47,7 @@ class Venue(Object):
     def __init__(
         self,
         *,
-        client: "pyrogram.BaseClient" = None,
+        client: "jonagram.BaseClient" = None,
         location: Location,
         title: str,
         address: str,

@@ -18,7 +18,7 @@
 
 from typing import Union
 
-from pyrogram.api import functions, types
+from jonagram.api import functions, types
 from ...ext import BaseClient
 from ...types.user_and_chats import Chat, ChatPermissions
 
@@ -47,7 +47,7 @@ class SetChatPermissions(BaseClient):
         Example:
             .. code-block:: python
 
-                from pyrogram import ChatPermissions
+                from jonagram import ChatPermissions
 
                 # Completely restrict chat
                 app.set_chat_permissions(chat_id, ChatPermissions())

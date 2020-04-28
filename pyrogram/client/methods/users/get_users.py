@@ -18,8 +18,8 @@
 
 from typing import Iterable, Union, List
 
-import pyrogram
-from pyrogram.api import functions
+import jonagram
+from jonagram.api import functions
 from ...ext import BaseClient
 
 
@@ -27,7 +27,7 @@ class GetUsers(BaseClient):
     def get_users(
         self,
         user_ids: Union[Iterable[Union[int, str]], int, str]
-    ) -> Union["pyrogram.User", List["pyrogram.User"]]:
+    ) -> Union["jonagram.User", List["jonagram.User"]]:
         """Get information about a user.
         You can retrieve up to 200 users at once.
 
@@ -61,9 +61,9 @@ class GetUsers(BaseClient):
             )
         )
 
-        users = pyrogram.List()
+        users = jonagram.List()
 
         for i in r:
-            users.append(pyrogram.User._parse(self, i))
+            users.append(jonagram.User._parse(self, i))
 
         return users if is_iterable else users[0]

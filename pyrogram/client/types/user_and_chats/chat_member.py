@@ -16,9 +16,9 @@
 #  You should have received a copy of the GNU Lesser General Public License
 #  along with Pyrogram.  If not, see <http://www.gnu.org/licenses/>.
 
-import pyrogram
+import jonagram
 
-from pyrogram.api import types
+from jonagram.api import types
 from ..object import Object
 
 
@@ -128,15 +128,15 @@ class ChatMember(Object):
     def __init__(
         self,
         *,
-        client: "pyrogram.BaseClient" = None,
-        user: "pyrogram.User",
+        client: "jonagram.BaseClient" = None,
+        user: "jonagram.User",
         status: str,
         title: str = None,
         until_date: int = None,
         joined_date: int = None,
-        invited_by: "pyrogram.User" = None,
-        promoted_by: "pyrogram.User" = None,
-        restricted_by: "pyrogram.User" = None,
+        invited_by: "jonagram.User" = None,
+        promoted_by: "jonagram.User" = None,
+        restricted_by: "jonagram.User" = None,
         is_member: bool = None,
 
         # Admin permissions
@@ -193,10 +193,10 @@ class ChatMember(Object):
 
     @staticmethod
     def _parse(client, member, users) -> "ChatMember":
-        user = pyrogram.User._parse(client, users[member.user_id])
+        user = jonagram.User._parse(client, users[member.user_id])
 
         invited_by = (
-            pyrogram.User._parse(client, users[member.inviter_id])
+            jonagram.User._parse(client, users[member.inviter_id])
             if getattr(member, "inviter_id", None) else None
         )
 
@@ -235,7 +235,7 @@ class ChatMember(Object):
                 title=member.rank,
                 joined_date=member.date,
                 invited_by=invited_by,
-                promoted_by=pyrogram.User._parse(client, users[member.promoted_by]),
+                promoted_by=jonagram.User._parse(client, users[member.promoted_by]),
                 can_be_edited=member.can_edit,
                 can_change_info=permissions.change_info,
                 can_post_messages=permissions.post_messages,
@@ -257,7 +257,7 @@ class ChatMember(Object):
                 until_date=denied_permissions.until_date,
                 joined_date=member.date,
                 is_member=not member.left,
-                restricted_by=pyrogram.User._parse(client, users[member.kicked_by]),
+                restricted_by=jonagram.User._parse(client, users[member.kicked_by]),
                 can_send_messages=not denied_permissions.send_messages,
                 can_send_media_messages=not denied_permissions.send_media,
                 can_send_stickers=not denied_permissions.send_stickers,

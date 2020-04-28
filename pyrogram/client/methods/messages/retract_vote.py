@@ -18,9 +18,9 @@
 
 from typing import Union
 
-import pyrogram
-from pyrogram.api import functions
-from pyrogram.client.ext import BaseClient
+import jonagram
+from jonagram.api import functions
+from jonagram.client.ext import BaseClient
 
 
 class RetractVote(BaseClient):
@@ -28,7 +28,7 @@ class RetractVote(BaseClient):
         self,
         chat_id: Union[int, str],
         message_id: int
-    ) -> "pyrogram.Poll":
+    ) -> "jonagram.Poll":
         """Retract your vote in a poll.
 
         Parameters:
@@ -56,4 +56,4 @@ class RetractVote(BaseClient):
             )
         )
 
-        return pyrogram.Poll._parse(self, r.updates[0])
+        return jonagram.Poll._parse(self, r.updates[0])

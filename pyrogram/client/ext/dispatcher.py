@@ -22,8 +22,8 @@ from collections import OrderedDict
 from queue import Queue
 from threading import Thread, Lock
 
-import pyrogram
-from pyrogram.api.types import (
+import jonagram
+from jonagram.api.types import (
     UpdateNewMessage, UpdateNewChannelMessage, UpdateNewScheduledMessage,
     UpdateEditMessage, UpdateEditChannelMessage,
     UpdateDeleteMessages, UpdateDeleteChannelMessages,
@@ -78,7 +78,7 @@ class Dispatcher:
         self.update_parsers = {
             Dispatcher.MESSAGE_UPDATES:
                 lambda upd, usr, cht: (
-                    pyrogram.Message._parse(
+                    jonagram.Message._parse(
                         self.client,
                         upd.message,
                         usr,
@@ -92,19 +92,19 @@ class Dispatcher:
                 lambda upd, usr, cht: (utils.parse_deleted_messages(self.client, upd), DeletedMessagesHandler),
 
             Dispatcher.CALLBACK_QUERY_UPDATES:
-                lambda upd, usr, cht: (pyrogram.CallbackQuery._parse(self.client, upd, usr), CallbackQueryHandler),
+                lambda upd, usr, cht: (jonagram.CallbackQuery._parse(self.client, upd, usr), CallbackQueryHandler),
 
             (UpdateUserStatus,):
-                lambda upd, usr, cht: (pyrogram.User._parse_user_status(self.client, upd), UserStatusHandler),
+                lambda upd, usr, cht: (jonagram.User._parse_user_status(self.client, upd), UserStatusHandler),
 
             (UpdateBotInlineQuery,):
-                lambda upd, usr, cht: (pyrogram.InlineQuery._parse(self.client, upd, usr), InlineQueryHandler),
+                lambda upd, usr, cht: (jonagram.InlineQuery._parse(self.client, upd, usr), InlineQueryHandler),
 
             (UpdateMessagePoll,):
-                lambda upd, usr, cht: (pyrogram.Poll._parse_update(self.client, upd), PollHandler),
+                lambda upd, usr, cht: (jonagram.Poll._parse_update(self.client, upd), PollHandler),
 
             (UpdateBotInlineSend,):
-                lambda upd, usr, cht: (pyrogram.ChosenInlineResult._parse(self.client, upd, usr),
+                lambda upd, usr, cht: (jonagram.ChosenInlineResult._parse(self.client, upd, usr),
                                        ChosenInlineResultHandler)
         }
 
@@ -203,15 +203,15 @@ class Dispatcher:
 
                             try:
                                 handler.callback(self.client, *args)
-                            except pyrogram.StopPropagation:
+                            except jonagram.StopPropagation:
                                 raise
-                            except pyrogram.ContinuePropagation:
+                            except jonagram.ContinuePropagation:
                                 continue
                             except Exception as e:
                                 log.error(e, exc_info=True)
 
                             break
-            except pyrogram.StopPropagation:
+            except jonagram.StopPropagation:
                 pass
             except Exception as e:
                 log.error(e, exc_info=True)

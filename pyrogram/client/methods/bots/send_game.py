@@ -18,9 +18,9 @@
 
 from typing import Union
 
-import pyrogram
-from pyrogram.api import functions, types
-from pyrogram.client.ext import BaseClient
+import jonagram
+from jonagram.api import functions, types
+from jonagram.client.ext import BaseClient
 
 
 class SendGame(BaseClient):
@@ -31,12 +31,12 @@ class SendGame(BaseClient):
         disable_notification: bool = None,
         reply_to_message_id: int = None,
         reply_markup: Union[
-            "pyrogram.InlineKeyboardMarkup",
-            "pyrogram.ReplyKeyboardMarkup",
-            "pyrogram.ReplyKeyboardRemove",
-            "pyrogram.ForceReply"
+            "jonagram.InlineKeyboardMarkup",
+            "jonagram.ReplyKeyboardMarkup",
+            "jonagram.ReplyKeyboardRemove",
+            "jonagram.ForceReply"
         ] = None
-    ) -> "pyrogram.Message":
+    ) -> "jonagram.Message":
         """Send a game.
 
         Parameters:
@@ -86,7 +86,7 @@ class SendGame(BaseClient):
 
         for i in r.updates:
             if isinstance(i, (types.UpdateNewMessage, types.UpdateNewChannelMessage)):
-                return pyrogram.Message._parse(
+                return jonagram.Message._parse(
                     self, i.message,
                     {i.id: i for i in r.users},
                     {i.id: i for i in r.chats}

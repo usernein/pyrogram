@@ -18,8 +18,8 @@
 
 from typing import Union
 
-import pyrogram
-from pyrogram.api import functions, types
+import jonagram
+from jonagram.api import functions, types
 from ...ext import BaseClient, utils
 
 
@@ -27,7 +27,7 @@ class GetChat(BaseClient):
     def get_chat(
         self,
         chat_id: Union[int, str]
-    ) -> Union["pyrogram.Chat", "pyrogram.ChatPreview"]:
+    ) -> Union["jonagram.Chat", "jonagram.ChatPreview"]:
         """Get up to date information about a chat.
 
         Information include current name of the user for one-on-one conversations, current username of a user, group or
@@ -49,7 +49,7 @@ class GetChat(BaseClient):
         Example:
             .. code-block:: python
 
-                chat = app.get_chat("pyrogram")
+                chat = app.get_chat("jonagram")
                 print(chat)
         """
         match = self.INVITE_LINK_RE.match(str(chat_id))
@@ -62,7 +62,7 @@ class GetChat(BaseClient):
             )
 
             if isinstance(r, types.ChatInvite):
-                return pyrogram.ChatPreview._parse(self, r)
+                return jonagram.ChatPreview._parse(self, r)
 
             self.fetch_peers([r.chat])
 
@@ -81,4 +81,4 @@ class GetChat(BaseClient):
         else:
             r = self.send(functions.messages.GetFullChat(chat_id=peer.chat_id))
 
-        return pyrogram.Chat._parse_full(self, r)
+        return jonagram.Chat._parse_full(self, r)

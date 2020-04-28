@@ -23,6 +23,6 @@ class List(list, TLObject):
     __slots__ = []
 
     def __repr__(self):
-        return "pyrogram.api.core.List([{}])".format(
+        return "jonagram.api.core.List([{}])".format(
             ",".join(TLObject.__repr__(i) for i in self)
         )

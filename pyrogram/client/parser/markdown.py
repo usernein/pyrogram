@@ -20,7 +20,7 @@ import html
 import re
 from typing import Union
 
-import pyrogram
+import jonagram
 from . import utils
 from .html import HTML
 
@@ -53,7 +53,7 @@ FIXED_WIDTH_DELIMS = [CODE_DELIM, PRE_DELIM]
 
 
 class Markdown:
-    def __init__(self, client: Union["pyrogram.BaseClient", None]):
+    def __init__(self, client: Union["jonagram.BaseClient", None]):
         self.html = HTML(client)
 
     def parse(self, text: str, strict: bool = False):

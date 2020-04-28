@@ -16,7 +16,7 @@
 #  You should have received a copy of the GNU Lesser General Public License
 #  along with Pyrogram.  If not, see <http://www.gnu.org/licenses/>.
 
-from pyrogram.api import functions
+from jonagram.api import functions
 from ...ext import BaseClient
 
 
@@ -53,7 +53,7 @@ class UpdateProfile(BaseClient):
                 app.update_bio(first_name="Pyrogram")
                 
                 # Update first name and bio
-                app.update_bio(first_name="Pyrogram", bio="https://docs.pyrogram.org/")
+                app.update_bio(first_name="Pyrogram", bio="https://docs.jonagram.org/")
                 
                 # Remove the last name
                 app.update_bio(last_name="")

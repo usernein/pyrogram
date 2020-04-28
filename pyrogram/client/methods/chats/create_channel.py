@@ -16,8 +16,8 @@
 #  You should have received a copy of the GNU Lesser General Public License
 #  along with Pyrogram.  If not, see <http://www.gnu.org/licenses/>.
 
-import pyrogram
-from pyrogram.api import functions
+import jonagram
+from jonagram.api import functions
 from ...ext import BaseClient
 
 
@@ -26,7 +26,7 @@ class CreateChannel(BaseClient):
         self,
         title: str,
         description: str = ""
-    ) -> "pyrogram.Chat":
+    ) -> "jonagram.Chat":
         """Create a new broadcast channel.
 
         Parameters:
@@ -52,4 +52,4 @@ class CreateChannel(BaseClient):
             )
         )
 
-        return pyrogram.Chat._parse_chat(self, r.chats[0])
+        return jonagram.Chat._parse_chat(self, r.chats[0])

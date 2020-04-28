@@ -18,8 +18,8 @@
 
 from typing import Union, List
 
-import pyrogram
-from pyrogram.api import functions
+import jonagram
+from jonagram.api import functions
 from ...ext import BaseClient
 
 
@@ -28,12 +28,12 @@ class CreateGroup(BaseClient):
         self,
         title: str,
         users: Union[Union[int, str], List[Union[int, str]]]
-    ) -> "pyrogram.Chat":
+    ) -> "jonagram.Chat":
         """Create a new basic group.
 
         .. note::
 
-            If you want to create a new supergroup, use :meth:`~pyrogram.Client.create_supergroup` instead.
+            If you want to create a new supergroup, use :meth:`~jonagram.Client.create_supergroup` instead.
 
         Parameters:
             title (``str``):
@@ -62,4 +62,4 @@ class CreateGroup(BaseClient):
             )
         )
 
-        return pyrogram.Chat._parse_chat(self, r.chats[0])
+        return jonagram.Chat._parse_chat(self, r.chats[0])

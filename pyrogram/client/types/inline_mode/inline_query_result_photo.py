@@ -18,7 +18,7 @@
 
 from typing import Union
 
-from pyrogram.api import types
+from jonagram.api import types
 from .inline_query_result import InlineQueryResult
 from ..bots_and_keyboards import InlineKeyboardMarkup
 from ..input_message_content import InputMessageContent

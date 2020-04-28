@@ -19,9 +19,9 @@
 from struct import pack
 from typing import Union, List
 
-import pyrogram
-from pyrogram.api import types
-from pyrogram.client.ext.utils import encode_file_id
+import jonagram
+from jonagram.api import types
+from jonagram.client.ext.utils import encode_file_id
 from .stripped_thumbnail import StrippedThumbnail
 from ..object import Object
 
@@ -46,7 +46,7 @@ class Thumbnail(Object):
     def __init__(
         self,
         *,
-        client: "pyrogram.BaseClient" = None,
+        client: "jonagram.BaseClient" = None,
         file_id: str,
         width: int,
         height: int,

@@ -32,17 +32,17 @@ from signal import signal, SIGINT, SIGTERM, SIGABRT
 from threading import Thread
 from typing import Union, List
 
-from pyrogram.api import functions, types
-from pyrogram.api.core import TLObject
-from pyrogram.client.handlers import DisconnectHandler
-from pyrogram.client.handlers.handler import Handler
-from pyrogram.client.methods.password.utils import compute_check
-from pyrogram.crypto import AES
-from pyrogram.errors import (
+from jonagram.api import functions, types
+from jonagram.api.core import TLObject
+from jonagram.client.handlers import DisconnectHandler
+from jonagram.client.handlers.handler import Handler
+from jonagram.client.methods.password.utils import compute_check
+from jonagram.crypto import AES
+from jonagram.errors import (
     PhoneMigrate, NetworkMigrate, SessionPasswordNeeded,
     FloodWait, PeerIdInvalid, VolumeLocNotFound, UserMigrate, ChannelPrivate, AuthBytesInvalid,
     BadRequest)
-from pyrogram.session import Auth, Session
+from jonagram.session import Auth, Session
 from .ext import utils, Syncer, BaseClient, Dispatcher
 from .methods import Methods
 from .storage import Storage, FileStorage, MemoryStorage
@@ -61,7 +61,7 @@ class Client(Methods, BaseClient):
             Alternatively, if you don't want a file to be saved on disk, pass the special name "**:memory:**" to start
             an in-memory session that will be discarded as soon as you stop the Client. In order to reconnect again
             using a memory storage without having to login again, you can use
-            :meth:`~pyrogram.Client.export_session_string` before stopping the client to get a session string you can
+            :meth:`~jonagram.Client.export_session_string` before stopping the client to get a session string you can
             pass here as argument.
 
         api_id (``int`` | ``str``, *optional*):
@@ -815,7 +815,7 @@ class Client(Methods, BaseClient):
             .. code-block:: python
                 :emphasize-lines: 4
 
-                from pyrogram import Client
+                from jonagram import Client
 
                 app = Client("my_account")
                 app.start()
@@ -863,7 +863,7 @@ class Client(Methods, BaseClient):
             .. code-block:: python
                 :emphasize-lines: 8
 
-                from pyrogram import Client
+                from jonagram import Client
 
                 app = Client("my_account")
                 app.start()
@@ -905,7 +905,7 @@ class Client(Methods, BaseClient):
             .. code-block:: python
                 :emphasize-lines: 8
 
-                from pyrogram import Client
+                from jonagram import Client
 
                 app = Client("my_account")
                 app.start()
@@ -955,7 +955,7 @@ class Client(Methods, BaseClient):
             .. code-block:: python
                 :emphasize-lines: 13
 
-                from pyrogram import Client
+                from jonagram import Client
 
                 app1 = Client("account1")
                 app2 = Client("account2")
@@ -999,7 +999,7 @@ class Client(Methods, BaseClient):
             .. code-block:: python
                 :emphasize-lines: 7
 
-                from pyrogram import Client
+                from jonagram import Client
 
                 app = Client("my_account")
 
@@ -1033,7 +1033,7 @@ class Client(Methods, BaseClient):
             .. code-block:: python
                 :emphasize-lines: 8
 
-                from pyrogram import Client, MessageHandler
+                from jonagram import Client, MessageHandler
 
                 def dump(client, message):
                     print(message)
@@ -1068,7 +1068,7 @@ class Client(Methods, BaseClient):
             .. code-block:: python
                 :emphasize-lines: 11
 
-                from pyrogram import Client, MessageHandler
+                from jonagram import Client, MessageHandler
 
                 def dump(client, message):
                     print(message)
@@ -1097,7 +1097,7 @@ class Client(Methods, BaseClient):
             .. code-block:: python
                 :emphasize-lines: 9
 
-                from pyrogram import Client
+                from jonagram import Client
 
                 app = Client("my_account")
 
@@ -1126,7 +1126,7 @@ class Client(Methods, BaseClient):
             .. code-block:: python
                 :emphasize-lines: 6
 
-                from pyrogram import Client
+                from jonagram import Client
 
                 app = Client("my_account")
 
@@ -1155,7 +1155,7 @@ class Client(Methods, BaseClient):
             .. code-block:: python
                 :emphasize-lines: 10,14,18,22
 
-                from pyrogram import Client
+                from jonagram import Client
 
                 app = Client("my_account")
 
@@ -1371,13 +1371,13 @@ class Client(Methods, BaseClient):
         """Send raw Telegram queries.
 
         This method makes it possible to manually call every single Telegram API method in a low-level manner.
-        Available functions are listed in the :obj:`functions <pyrogram.api.functions>` package and may accept compound
-        data types from :obj:`types <pyrogram.api.types>` as well as bare types such as ``int``, ``str``, etc...
+        Available functions are listed in the :obj:`functions <jonagram.api.functions>` package and may accept compound
+        data types from :obj:`types <jonagram.api.types>` as well as bare types such as ``int``, ``str``, etc...
 
         .. note::
 
             This is a utility method intended to be used **only** when working with raw
-            :obj:`functions <pyrogram.api.functions>` (i.e: a Telegram API method you wish to use which is not
+            :obj:`functions <jonagram.api.functions>` (i.e: a Telegram API method you wish to use which is not
             available yet in the Client class as an easy-to-use method).
 
         Parameters:
@@ -1419,24 +1419,24 @@ class Client(Methods, BaseClient):
         if self.bot_token:
             pass
         else:
-            self.bot_token = parser.get("pyrogram", "bot_token", fallback=None)
+            self.bot_token = parser.get("jonagram", "bot_token", fallback=None)
 
         if self.api_id and self.api_hash:
             pass
         else:
-            if parser.has_section("pyrogram"):
-                self.api_id = parser.getint("pyrogram", "api_id")
-                self.api_hash = parser.get("pyrogram", "api_hash")
+            if parser.has_section("jonagram"):
+                self.api_id = parser.getint("jonagram", "api_id")
+                self.api_hash = parser.get("jonagram", "api_hash")
             else:
-                raise AttributeError("No API Key found. More info: https://docs.pyrogram.org/intro/setup")
+                raise AttributeError("No API Key found. More info: https://docs.jonagram.org/intro/setup")
 
         for option in ["app_version", "device_model", "system_version", "lang_code"]:
             if getattr(self, option):
                 pass
             else:
-                if parser.has_section("pyrogram"):
+                if parser.has_section("jonagram"):
                     setattr(self, option, parser.get(
-                        "pyrogram",
+                        "jonagram",
                         option,
                         fallback=getattr(Client, option.upper())
                     ))
@@ -1665,7 +1665,7 @@ class Client(Methods, BaseClient):
         .. note::
 
             This is a utility method intended to be used **only** when working with raw
-            :obj:`functions <pyrogram.api.functions>` (i.e: a Telegram API method you wish to use which is not
+            :obj:`functions <jonagram.api.functions>` (i.e: a Telegram API method you wish to use which is not
             available yet in the Client class as an easy-to-use method).
 
         Parameters:
@@ -1762,7 +1762,7 @@ class Client(Methods, BaseClient):
         .. note::
 
             This is a utility method intended to be used **only** when working with raw
-            :obj:`functions <pyrogram.api.functions>` (i.e: a Telegram API method you wish to use which is not
+            :obj:`functions <jonagram.api.functions>` (i.e: a Telegram API method you wish to use which is not
             available yet in the Client class as an easy-to-use method).
 
         Parameters:

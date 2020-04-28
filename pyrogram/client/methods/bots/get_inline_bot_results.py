@@ -18,9 +18,9 @@
 
 from typing import Union
 
-from pyrogram.api import functions, types
-from pyrogram.client.ext import BaseClient
-from pyrogram.errors import UnknownError
+from jonagram.api import functions, types
+from jonagram.client.ext import BaseClient
+from jonagram.errors import UnknownError
 
 
 class GetInlineBotResults(BaseClient):
@@ -33,7 +33,7 @@ class GetInlineBotResults(BaseClient):
         longitude: float = None
     ):
         """Get bot results via inline queries.
-        You can then send a result using :obj:`send_inline_bot_result <pyrogram.Client.send_inline_bot_result>`
+        You can then send a result using :obj:`send_inline_bot_result <jonagram.Client.send_inline_bot_result>`
 
         Parameters:
             bot (``int`` | ``str``):
@@ -56,7 +56,7 @@ class GetInlineBotResults(BaseClient):
                 Useful for location-based results only.
 
         Returns:
-            :obj:`BotResults <pyrogram.api.types.messages.BotResults>`: On Success.
+            :obj:`BotResults <jonagram.api.types.messages.BotResults>`: On Success.
 
         Raises:
             TimeoutError: In case the bot fails to answer within 10 seconds.
@@ -64,7 +64,7 @@ class GetInlineBotResults(BaseClient):
         Example:
             .. code-block:: python
 
-                results = app.get_inline_bot_results("pyrogrambot")
+                results = app.get_inline_bot_results("jonagrambot")
                 print(results)
         """
         # TODO: Don't return the raw type

@@ -18,8 +18,8 @@
 
 from typing import List, Union
 
-from pyrogram.api.types import KeyboardButtonRow
-from pyrogram.api.types import ReplyKeyboardMarkup as RawReplyKeyboardMarkup
+from jonagram.api.types import KeyboardButtonRow
+from jonagram.api.types import ReplyKeyboardMarkup as RawReplyKeyboardMarkup
 
 from . import KeyboardButton
 from ..object import Object

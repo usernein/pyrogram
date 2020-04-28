@@ -16,8 +16,8 @@
 #  You should have received a copy of the GNU Lesser General Public License
 #  along with Pyrogram.  If not, see <http://www.gnu.org/licenses/>.
 
-import pyrogram
-from pyrogram.api import functions
+import jonagram
+from jonagram.api import functions
 from ...ext import BaseClient
 
 
@@ -26,12 +26,12 @@ class CreateSupergroup(BaseClient):
         self,
         title: str,
         description: str = ""
-    ) -> "pyrogram.Chat":
+    ) -> "jonagram.Chat":
         """Create a new supergroup.
 
         .. note::
 
-            If you want to create a new basic group, use :meth:`~pyrogram.Client.create_group` instead.
+            If you want to create a new basic group, use :meth:`~jonagram.Client.create_group` instead.
 
         Parameters:
             title (``str``):
@@ -56,4 +56,4 @@ class CreateSupergroup(BaseClient):
             )
         )
 
-        return pyrogram.Chat._parse_chat(self, r.chats[0])
+        return jonagram.Chat._parse_chat(self, r.chats[0])

@@ -16,16 +16,16 @@
 #  You should have received a copy of the GNU Lesser General Public License
 #  along with Pyrogram.  If not, see <http://www.gnu.org/licenses/>.
 
-import pyrogram
-from pyrogram.api import functions
-from pyrogram.client.ext import BaseClient, utils
+import jonagram
+from jonagram.api import functions
+from jonagram.client.ext import BaseClient, utils
 
 
 class EditInlineReplyMarkup(BaseClient):
     def edit_inline_reply_markup(
         self,
         inline_message_id: str,
-        reply_markup: "pyrogram.InlineKeyboardMarkup" = None
+        reply_markup: "jonagram.InlineKeyboardMarkup" = None
     ) -> bool:
         """Edit only the reply markup of inline messages sent via the bot (for inline bots).
 
@@ -42,7 +42,7 @@ class EditInlineReplyMarkup(BaseClient):
         Example:
             .. code-block:: python
 
-                from pyrogram import InlineKeyboardMarkup, InlineKeyboardButton
+                from jonagram import InlineKeyboardMarkup, InlineKeyboardButton
 
                 # Bots only
                 app.edit_inline_reply_markup(

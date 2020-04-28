@@ -20,8 +20,8 @@ from base64 import b64encode
 from struct import pack
 from typing import Union
 
-import pyrogram
-from pyrogram.api import types
+import jonagram
+from jonagram.api import types
 from ..object import Object
 from ..update import Update
 from ..user_and_chats import User
@@ -64,11 +64,11 @@ class CallbackQuery(Object, Update):
     def __init__(
         self,
         *,
-        client: "pyrogram.BaseClient" = None,
+        client: "jonagram.BaseClient" = None,
         id: str,
         from_user: User,
         chat_instance: str,
-        message: "pyrogram.Message" = None,
+        message: "jonagram.Message" = None,
         inline_message_id: str = None,
         data: Union[str, bytes] = None,
         game_short_name: str = None
@@ -168,8 +168,8 @@ class CallbackQuery(Object, Update):
         text: str,
         parse_mode: Union[str, None] = object,
         disable_web_page_preview: bool = None,
-        reply_markup: "pyrogram.InlineKeyboardMarkup" = None
-    ) -> Union["pyrogram.Message", bool]:
+        reply_markup: "jonagram.InlineKeyboardMarkup" = None
+    ) -> Union["jonagram.Message", bool]:
         """Edit the text of messages attached to callback queries.
 
         Bound method *edit_message_text* of :obj:`CallbackQuery`.
@@ -220,8 +220,8 @@ class CallbackQuery(Object, Update):
         self,
         caption: str,
         parse_mode: Union[str, None] = object,
-        reply_markup: "pyrogram.InlineKeyboardMarkup" = None
-    ) -> Union["pyrogram.Message", bool]:
+        reply_markup: "jonagram.InlineKeyboardMarkup" = None
+    ) -> Union["jonagram.Message", bool]:
         """Edit the caption of media messages attached to callback queries.
 
         Bound method *edit_message_caption* of :obj:`CallbackQuery`.
@@ -251,9 +251,9 @@ class CallbackQuery(Object, Update):
 
     def edit_message_media(
         self,
-        media: "pyrogram.InputMedia",
-        reply_markup: "pyrogram.InlineKeyboardMarkup" = None
-    ) -> Union["pyrogram.Message", bool]:
+        media: "jonagram.InputMedia",
+        reply_markup: "jonagram.InlineKeyboardMarkup" = None
+    ) -> Union["jonagram.Message", bool]:
         """Edit animation, audio, document, photo or video messages attached to callback queries.
 
         Bound method *edit_message_media* of :obj:`CallbackQuery`.
@@ -288,8 +288,8 @@ class CallbackQuery(Object, Update):
 
     def edit_message_reply_markup(
         self,
-        reply_markup: "pyrogram.InlineKeyboardMarkup" = None
-    ) -> Union["pyrogram.Message", bool]:
+        reply_markup: "jonagram.InlineKeyboardMarkup" = None
+    ) -> Union["jonagram.Message", bool]:
         """Edit only the reply markup of messages attached to callback queries.
 
         Bound method *edit_message_reply_markup* of :obj:`CallbackQuery`.

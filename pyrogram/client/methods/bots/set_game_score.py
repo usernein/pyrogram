@@ -18,9 +18,9 @@
 
 from typing import Union
 
-import pyrogram
-from pyrogram.api import functions, types
-from pyrogram.client.ext import BaseClient
+import jonagram
+from jonagram.api import functions, types
+from jonagram.client.ext import BaseClient
 
 
 class SetGameScore(BaseClient):
@@ -32,7 +32,7 @@ class SetGameScore(BaseClient):
         disable_edit_message: bool = None,
         chat_id: Union[int, str] = None,
         message_id: int = None
-    ) -> Union["pyrogram.Message", bool]:
+    ) -> Union["jonagram.Message", bool]:
         # inline_message_id: str = None):  TODO Add inline_message_id
         """Set the score of the specified user in a game.
 
@@ -88,7 +88,7 @@ class SetGameScore(BaseClient):
 
         for i in r.updates:
             if isinstance(i, (types.UpdateEditMessage, types.UpdateEditChannelMessage)):
-                return pyrogram.Message._parse(
+                return jonagram.Message._parse(
                     self, i.message,
                     {i.id: i for i in r.users},
                     {i.id: i for i in r.chats}

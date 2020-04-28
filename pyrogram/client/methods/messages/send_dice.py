@@ -18,9 +18,9 @@
 
 from typing import Union
 
-import pyrogram
-from pyrogram.api import functions, types
-from pyrogram.client.ext import BaseClient
+import jonagram
+from jonagram.api import functions, types
+from jonagram.client.ext import BaseClient
 
 
 class SendDice(BaseClient):
@@ -32,12 +32,12 @@ class SendDice(BaseClient):
         reply_to_message_id: int = None,
         schedule_date: int = None,
         reply_markup: Union[
-            "pyrogram.InlineKeyboardMarkup",
-            "pyrogram.ReplyKeyboardMarkup",
-            "pyrogram.ReplyKeyboardRemove",
-            "pyrogram.ForceReply"
+            "jonagram.InlineKeyboardMarkup",
+            "jonagram.ReplyKeyboardMarkup",
+            "jonagram.ReplyKeyboardRemove",
+            "jonagram.ForceReply"
         ] = None
-    ) -> Union["pyrogram.Message", None]:
+    ) -> Union["jonagram.Message", None]:
         """Send a dice.
 
         Parameters:
@@ -71,10 +71,10 @@ class SendDice(BaseClient):
             .. code-block:: python
 
                 # Send a dice
-                app.send_dice("pyrogramlounge")
+                app.send_dice("jonagramlounge")
 
                 # Send a dart
-                app.send_dice("pyrogramlounge", "🎯")
+                app.send_dice("jonagramlounge", "🎯")
         """
 
         r = self.send(
@@ -95,7 +95,7 @@ class SendDice(BaseClient):
                 i,
                 (types.UpdateNewMessage, types.UpdateNewChannelMessage, types.UpdateNewScheduledMessage)
             ):
-                return pyrogram.Message._parse(
+                return jonagram.Message._parse(
                     self, i.message,
                     {i.id: i for i in r.users},
                     {i.id: i for i in r.chats},

@@ -25,8 +25,8 @@ HOME = "compiler/docs"
 DESTINATION = "docs/source/telegram"
 PYROGRAM_API_DEST = "docs/source/api"
 
-FUNCTIONS_PATH = "pyrogram/api/functions"
-TYPES_PATH = "pyrogram/api/types"
+FUNCTIONS_PATH = "jonagram/api/functions"
+TYPES_PATH = "jonagram/api/types"
 
 FUNCTIONS_BASE = "functions"
 TYPES_BASE = "types"
@@ -70,7 +70,7 @@ def generate(source_path, base):
                         page_template.format(
                             title=name,
                             title_markup="=" * len(name),
-                            full_class_path="pyrogram.api.{}".format(
+                            full_class_path="jonagram.api.{}".format(
                                 ".".join(full_path.split("/")[:-1]) + "." + name
                             )
                         )
@@ -92,14 +92,14 @@ def generate(source_path, base):
 
         if k != base:
             inner_path = base + "/" + k + "/index" + ".rst"
-            module = "pyrogram.api.{}.{}".format(base, k)
+            module = "jonagram.api.{}.{}".format(base, k)
         else:
             for i in sorted(list(all_entities), reverse=True):
                 if i != base:
                     entities.insert(0, "{0}/index".format(i))
 
             inner_path = base + "/index" + ".rst"
-            module = "pyrogram.api.{}".format(base)
+            module = "jonagram.api.{}".format(base)
 
         with open(DESTINATION + "/" + inner_path, "w", encoding="utf-8") as f:
             if k == base:
@@ -118,7 +118,7 @@ def generate(source_path, base):
             f.write("\n")
 
 
-def pyrogram_api():
+def jonagram_api():
     def get_title_list(s: str) -> list:
         return [i.strip() for i in [j.strip() for j in s.split("\n") if j] if i]
 
@@ -298,7 +298,7 @@ def pyrogram_api():
                     title = "{}()".format(method)
 
                     f2.write(title + "\n" + "=" * len(title) + "\n\n")
-                    f2.write(".. automethod:: pyrogram.Client.{}()".format(method))
+                    f2.write(".. automethod:: jonagram.Client.{}()".format(method))
 
         f.write(template.format(**fmt_keys))
 
@@ -403,7 +403,7 @@ def pyrogram_api():
                     title = "{}".format(type)
 
                     f2.write(title + "\n" + "=" * len(title) + "\n\n")
-                    f2.write(".. autoclass:: pyrogram.{}()".format(type))
+                    f2.write(".. autoclass:: jonagram.{}()".format(type))
 
         f.write(template.format(**fmt_keys))
 
@@ -504,7 +504,7 @@ def pyrogram_api():
                     title = "{}()".format(bm)
 
                     f2.write(title + "\n" + "=" * len(title) + "\n\n")
-                    f2.write(".. automethod:: pyrogram.{}()".format(bm))
+                    f2.write(".. automethod:: jonagram.{}()".format(bm))
 
         f.write(template.format(**fmt_keys))
 
@@ -523,12 +523,12 @@ def start():
 
     generate(TYPES_PATH, TYPES_BASE)
     generate(FUNCTIONS_PATH, FUNCTIONS_BASE)
-    pyrogram_api()
+    jonagram_api()
 
 
 if "__main__" == __name__:
-    FUNCTIONS_PATH = "../../pyrogram/api/functions"
-    TYPES_PATH = "../../pyrogram/api/types"
+    FUNCTIONS_PATH = "../../jonagram/api/functions"
+    TYPES_PATH = "../../jonagram/api/types"
     HOME = "."
     DESTINATION = "../../docs/source/telegram"
     PYROGRAM_API_DEST = "../../docs/source/api"

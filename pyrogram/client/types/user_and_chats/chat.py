@@ -18,8 +18,8 @@
 
 from typing import Union, List, Generator, Optional
 
-import pyrogram
-from pyrogram.api import types
+import jonagram
+from jonagram.api import types
 from .chat_permissions import ChatPermissions
 from .chat_photo import ChatPhoto
 from .restriction import Restriction
@@ -106,7 +106,7 @@ class Chat(Object):
     def __init__(
         self,
         *,
-        client: "pyrogram.BaseClient" = None,
+        client: "jonagram.BaseClient" = None,
         id: int,
         type: str,
         is_verified: bool = None,
@@ -126,7 +126,7 @@ class Chat(Object):
         can_set_sticker_set: bool = None,
         members_count: int = None,
         restrictions: List[Restriction] = None,
-        permissions: "pyrogram.ChatPermissions" = None,
+        permissions: "jonagram.ChatPermissions" = None,
         distance: int = None
     ):
         super().__init__(client)
@@ -168,7 +168,7 @@ class Chat(Object):
             first_name=user.first_name,
             last_name=user.last_name,
             photo=ChatPhoto._parse(client, user.photo, peer_id, user.access_hash),
-            restrictions=pyrogram.List([Restriction._parse(r) for r in user.restriction_reason]) or None,
+            restrictions=jonagram.List([Restriction._parse(r) for r in user.restriction_reason]) or None,
             client=client
         )
 
@@ -202,7 +202,7 @@ class Chat(Object):
             title=channel.title,
             username=getattr(channel, "username", None),
             photo=ChatPhoto._parse(client, getattr(channel, "photo", None), peer_id, channel.access_hash),
-            restrictions=pyrogram.List([Restriction._parse(r) for r in restriction_reason]) or None,
+            restrictions=jonagram.List([Restriction._parse(r) for r in restriction_reason]) or None,
             permissions=ChatPermissions._parse(getattr(channel, "default_banned_rights", None)),
             members_count=getattr(channel, "participants_count", None),
             client=client
@@ -437,7 +437,7 @@ class Chat(Object):
         self,
         user_id: Union[int, str],
         until_date: int = 0
-    ) -> Union["pyrogram.Message", bool]:
+    ) -> Union["jonagram.Message", bool]:
         """Bound method *kick_member* of :obj:`Chat`.
 
         Use as a shortcut for:
@@ -525,7 +525,7 @@ class Chat(Object):
         user_id: Union[int, str],
         permissions: ChatPermissions,
         until_date: int = 0,
-    ) -> "pyrogram.Chat":
+    ) -> "jonagram.Chat":
         """Bound method *unban_member* of :obj:`Chat`.
 
         Use as a shortcut for:
@@ -722,7 +722,7 @@ class Chat(Object):
     def get_member(
         self,
         user_id: Union[int, str],
-    ) -> "pyrogram.ChatMember":
+    ) -> "jonagram.ChatMember":
         """Bound method *get_member* of :obj:`Chat`.
 
         Use as a shortcut for:
@@ -754,7 +754,7 @@ class Chat(Object):
         limit: int = 200,
         query: str = "",
         filter: str = "all"
-    ) -> List["pyrogram.ChatMember"]:
+    ) -> List["jonagram.ChatMember"]:
         """Bound method *get_members* of :obj:`Chat`.
 
         Use as a shortcut for:
@@ -786,7 +786,7 @@ class Chat(Object):
         limit: int = 0,
         query: str = "",
         filter: str = "all"
-    ) -> Optional[Generator["pyrogram.ChatMember", None, None]]:
+    ) -> Optional[Generator["jonagram.ChatMember", None, None]]:
         """Bound method *iter_members* of :obj:`Chat`.
 
         Use as a shortcut for:

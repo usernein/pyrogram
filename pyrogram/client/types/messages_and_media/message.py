@@ -19,10 +19,10 @@
 from functools import partial
 from typing import List, Match, Union
 
-import pyrogram
-from pyrogram.api import types
-from pyrogram.client.types.input_media import InputMedia
-from pyrogram.errors import MessageIdsEmpty
+import jonagram
+from jonagram.api import types
+from jonagram.client.types.input_media import InputMedia
+from jonagram.errors import MessageIdsEmpty
 from .contact import Contact
 from .location import Location
 from .message_entity import MessageEntity
@@ -253,12 +253,12 @@ class Message(Object, Update):
 
         matches (List of regex Matches, *optional*):
             A list containing all `Match Objects <https://docs.python.org/3/library/re.html#match-objects>`_ that match
-            the text of this message. Only applicable when using :obj:`Filters.regex <pyrogram.Filters.regex>`.
+            the text of this message. Only applicable when using :obj:`Filters.regex <jonagram.Filters.regex>`.
 
         command (List of ``str``, *optional*):
             A list containing the command and its arguments, if any.
             E.g.: "/start 1 2 3" would produce ["start", "1", "2", "3"].
-            Only applicable when using :obj:`Filters.command <pyrogram.Filters.command>`.
+            Only applicable when using :obj:`Filters.command <jonagram.Filters.command>`.
 
         reply_markup (:obj:`InlineKeyboardMarkup` | :obj:`ReplyKeyboardMarkup` | :obj:`ReplyKeyboardRemove` | :obj:`ForceReply`, *optional*):
             Additional interface options. An object for an inline keyboard, custom reply keyboard,
@@ -270,7 +270,7 @@ class Message(Object, Update):
     def __init__(
         self,
         *,
-        client: "pyrogram.BaseClient" = None,
+        client: "jonagram.BaseClient" = None,
         message_id: int,
         date: int = None,
         chat: Chat = None,
@@ -292,28 +292,28 @@ class Message(Object, Update):
         media_group_id: str = None,
         author_signature: str = None,
         text: Str = None,
-        entities: List["pyrogram.MessageEntity"] = None,
-        caption_entities: List["pyrogram.MessageEntity"] = None,
-        audio: "pyrogram.Audio" = None,
-        document: "pyrogram.Document" = None,
-        photo: "pyrogram.Photo" = None,
-        sticker: "pyrogram.Sticker" = None,
-        animation: "pyrogram.Animation" = None,
-        game: "pyrogram.Game" = None,
-        video: "pyrogram.Video" = None,
-        voice: "pyrogram.Voice" = None,
-        video_note: "pyrogram.VideoNote" = None,
+        entities: List["jonagram.MessageEntity"] = None,
+        caption_entities: List["jonagram.MessageEntity"] = None,
+        audio: "jonagram.Audio" = None,
+        document: "jonagram.Document" = None,
+        photo: "jonagram.Photo" = None,
+        sticker: "jonagram.Sticker" = None,
+        animation: "jonagram.Animation" = None,
+        game: "jonagram.Game" = None,
+        video: "jonagram.Video" = None,
+        voice: "jonagram.Voice" = None,
+        video_note: "jonagram.VideoNote" = None,
         caption: Str = None,
-        contact: "pyrogram.Contact" = None,
-        location: "pyrogram.Location" = None,
-        venue: "pyrogram.Venue" = None,
-        web_page: "pyrogram.WebPage" = None,
-        poll: "pyrogram.Poll" = None,
-        dice: "pyrogram.Dice" = None,
+        contact: "jonagram.Contact" = None,
+        location: "jonagram.Location" = None,
+        venue: "jonagram.Venue" = None,
+        web_page: "jonagram.WebPage" = None,
+        poll: "jonagram.Poll" = None,
+        dice: "jonagram.Dice" = None,
         new_chat_members: List[User] = None,
         left_chat_member: User = None,
         new_chat_title: str = None,
-        new_chat_photo: "pyrogram.Photo" = None,
+        new_chat_photo: "jonagram.Photo" = None,
         delete_chat_photo: bool = None,
         group_chat_created: bool = None,
         supergroup_chat_created: bool = None,
@@ -328,10 +328,10 @@ class Message(Object, Update):
         matches: List[Match] = None,
         command: List[str] = None,
         reply_markup: Union[
-            "pyrogram.InlineKeyboardMarkup",
-            "pyrogram.ReplyKeyboardMarkup",
-            "pyrogram.ReplyKeyboardRemove",
-            "pyrogram.ForceReply"
+            "jonagram.InlineKeyboardMarkup",
+            "jonagram.ReplyKeyboardMarkup",
+            "jonagram.ReplyKeyboardRemove",
+            "jonagram.ForceReply"
         ] = None
     ):
         super().__init__(client)
@@ -464,7 +464,7 @@ class Message(Object, Update):
                     pass
 
             if isinstance(action, types.MessageActionGameScore):
-                parsed_message.game_high_score = pyrogram.GameHighScore._parse_action(client, message, users)
+                parsed_message.game_high_score = jonagram.GameHighScore._parse_action(client, message, users)
 
                 if message.reply_to_msg_id and replies:
                     try:
@@ -480,7 +480,7 @@ class Message(Object, Update):
 
         if isinstance(message, types.Message):
             entities = [MessageEntity._parse(client, entity, users) for entity in message.entities]
-            entities = pyrogram.List(filter(lambda x: x is not None, entities))
+            entities = jonagram.List(filter(lambda x: x is not None, entities))
 
             forward_from = None
             forward_sender_name = None
@@ -529,9 +529,9 @@ class Message(Object, Update):
                 elif isinstance(media, types.MessageMediaContact):
                     contact = Contact._parse(client, media)
                 elif isinstance(media, types.MessageMediaVenue):
-                    venue = pyrogram.Venue._parse(client, media)
+                    venue = jonagram.Venue._parse(client, media)
                 elif isinstance(media, types.MessageMediaGame):
-                    game = pyrogram.Game._parse(client, message)
+                    game = jonagram.Game._parse(client, message)
                 elif isinstance(media, types.MessageMediaDocument):
                     doc = media.document
 
@@ -548,39 +548,39 @@ class Message(Object, Update):
                             audio_attributes = attributes[types.DocumentAttributeAudio]
 
                             if audio_attributes.voice:
-                                voice = pyrogram.Voice._parse(client, doc, audio_attributes)
+                                voice = jonagram.Voice._parse(client, doc, audio_attributes)
                             else:
-                                audio = pyrogram.Audio._parse(client, doc, audio_attributes, file_name)
+                                audio = jonagram.Audio._parse(client, doc, audio_attributes, file_name)
                         elif types.DocumentAttributeAnimated in attributes:
                             video_attributes = attributes.get(types.DocumentAttributeVideo, None)
 
-                            animation = pyrogram.Animation._parse(client, doc, video_attributes, file_name)
+                            animation = jonagram.Animation._parse(client, doc, video_attributes, file_name)
                         elif types.DocumentAttributeVideo in attributes:
                             video_attributes = attributes[types.DocumentAttributeVideo]
 
                             if video_attributes.round_message:
-                                video_note = pyrogram.VideoNote._parse(client, doc, video_attributes)
+                                video_note = jonagram.VideoNote._parse(client, doc, video_attributes)
                             else:
-                                video = pyrogram.Video._parse(client, doc, video_attributes, file_name,
+                                video = jonagram.Video._parse(client, doc, video_attributes, file_name,
                                                               media.ttl_seconds)
                         elif types.DocumentAttributeSticker in attributes:
-                            sticker = pyrogram.Sticker._parse(
+                            sticker = jonagram.Sticker._parse(
                                 client, doc,
                                 attributes.get(types.DocumentAttributeImageSize, None),
                                 attributes[types.DocumentAttributeSticker],
                                 file_name
                             )
                         else:
-                            document = pyrogram.Document._parse(client, doc, file_name)
+                            document = jonagram.Document._parse(client, doc, file_name)
                 elif isinstance(media, types.MessageMediaWebPage):
                     if isinstance(media.webpage, types.WebPage):
-                        web_page = pyrogram.WebPage._parse(client, media.webpage)
+                        web_page = jonagram.WebPage._parse(client, media.webpage)
                     else:
                         media = None
                 elif isinstance(media, types.MessageMediaPoll):
-                    poll = pyrogram.Poll._parse(client, media)
+                    poll = jonagram.Poll._parse(client, media)
                 elif isinstance(media, types.MessageMediaDice):
-                    dice = pyrogram.Dice._parse(client, media)
+                    dice = jonagram.Dice._parse(client, media)
                 else:
                     media = None
 
@@ -588,13 +588,13 @@ class Message(Object, Update):
 
             if reply_markup:
                 if isinstance(reply_markup, types.ReplyKeyboardForceReply):
-                    reply_markup = pyrogram.ForceReply.read(reply_markup)
+                    reply_markup = jonagram.ForceReply.read(reply_markup)
                 elif isinstance(reply_markup, types.ReplyKeyboardMarkup):
-                    reply_markup = pyrogram.ReplyKeyboardMarkup.read(reply_markup)
+                    reply_markup = jonagram.ReplyKeyboardMarkup.read(reply_markup)
                 elif isinstance(reply_markup, types.ReplyInlineMarkup):
-                    reply_markup = pyrogram.InlineKeyboardMarkup.read(reply_markup)
+                    reply_markup = jonagram.InlineKeyboardMarkup.read(reply_markup)
                 elif isinstance(reply_markup, types.ReplyKeyboardHide):
-                    reply_markup = pyrogram.ReplyKeyboardRemove.read(reply_markup)
+                    reply_markup = jonagram.ReplyKeyboardRemove.read(reply_markup)
                 else:
                     reply_markup = None
 
@@ -764,10 +764,10 @@ class Message(Object, Update):
         thumb: str = None,
         disable_notification: bool = None,
         reply_markup: Union[
-            "pyrogram.InlineKeyboardMarkup",
-            "pyrogram.ReplyKeyboardMarkup",
-            "pyrogram.ReplyKeyboardRemove",
-            "pyrogram.ForceReply"
+            "jonagram.InlineKeyboardMarkup",
+            "jonagram.ReplyKeyboardMarkup",
+            "jonagram.ReplyKeyboardRemove",
+            "jonagram.ForceReply"
         ] = None,
         reply_to_message_id: int = None,
         progress: callable = None,
@@ -907,10 +907,10 @@ class Message(Object, Update):
         disable_notification: bool = None,
         reply_to_message_id: int = None,
         reply_markup: Union[
-            "pyrogram.InlineKeyboardMarkup",
-            "pyrogram.ReplyKeyboardMarkup",
-            "pyrogram.ReplyKeyboardRemove",
-            "pyrogram.ForceReply"
+            "jonagram.InlineKeyboardMarkup",
+            "jonagram.ReplyKeyboardMarkup",
+            "jonagram.ReplyKeyboardRemove",
+            "jonagram.ForceReply"
         ] = None,
         progress: callable = None,
         progress_args: tuple = ()
@@ -1045,10 +1045,10 @@ class Message(Object, Update):
         disable_notification: bool = None,
         reply_to_message_id: int = None,
         reply_markup: Union[
-            "pyrogram.InlineKeyboardMarkup",
-            "pyrogram.ReplyKeyboardMarkup",
-            "pyrogram.ReplyKeyboardRemove",
-            "pyrogram.ForceReply"
+            "jonagram.InlineKeyboardMarkup",
+            "jonagram.ReplyKeyboardMarkup",
+            "jonagram.ReplyKeyboardRemove",
+            "jonagram.ForceReply"
         ] = None
     ) -> "Message":
         """Bound method *reply_cached_media* of :obj:`Message`.
@@ -1173,10 +1173,10 @@ class Message(Object, Update):
         disable_notification: bool = None,
         reply_to_message_id: int = None,
         reply_markup: Union[
-            "pyrogram.InlineKeyboardMarkup",
-            "pyrogram.ReplyKeyboardMarkup",
-            "pyrogram.ReplyKeyboardRemove",
-            "pyrogram.ForceReply"
+            "jonagram.InlineKeyboardMarkup",
+            "jonagram.ReplyKeyboardMarkup",
+            "jonagram.ReplyKeyboardRemove",
+            "jonagram.ForceReply"
         ] = None
     ) -> "Message":
         """Bound method *reply_contact* of :obj:`Message`.
@@ -1259,10 +1259,10 @@ class Message(Object, Update):
         disable_notification: bool = None,
         reply_to_message_id: int = None,
         reply_markup: Union[
-            "pyrogram.InlineKeyboardMarkup",
-            "pyrogram.ReplyKeyboardMarkup",
-            "pyrogram.ReplyKeyboardRemove",
-            "pyrogram.ForceReply"
+            "jonagram.InlineKeyboardMarkup",
+            "jonagram.ReplyKeyboardMarkup",
+            "jonagram.ReplyKeyboardRemove",
+            "jonagram.ForceReply"
         ] = None,
         progress: callable = None,
         progress_args: tuple = ()
@@ -1382,10 +1382,10 @@ class Message(Object, Update):
         disable_notification: bool = None,
         reply_to_message_id: int = None,
         reply_markup: Union[
-            "pyrogram.InlineKeyboardMarkup",
-            "pyrogram.ReplyKeyboardMarkup",
-            "pyrogram.ReplyKeyboardRemove",
-            "pyrogram.ForceReply"
+            "jonagram.InlineKeyboardMarkup",
+            "jonagram.ReplyKeyboardMarkup",
+            "jonagram.ReplyKeyboardRemove",
+            "jonagram.ForceReply"
         ] = None
     ) -> "Message":
         """Bound method *reply_game* of :obj:`Message`.
@@ -1521,10 +1521,10 @@ class Message(Object, Update):
         disable_notification: bool = None,
         reply_to_message_id: int = None,
         reply_markup: Union[
-            "pyrogram.InlineKeyboardMarkup",
-            "pyrogram.ReplyKeyboardMarkup",
-            "pyrogram.ReplyKeyboardRemove",
-            "pyrogram.ForceReply"
+            "jonagram.InlineKeyboardMarkup",
+            "jonagram.ReplyKeyboardMarkup",
+            "jonagram.ReplyKeyboardRemove",
+            "jonagram.ForceReply"
         ] = None
     ) -> "Message":
         """Bound method *reply_location* of :obj:`Message`.
@@ -1590,7 +1590,7 @@ class Message(Object, Update):
 
     def reply_media_group(
         self,
-        media: List[Union["pyrogram.InputMediaPhoto", "pyrogram.InputMediaVideo"]],
+        media: List[Union["jonagram.InputMediaPhoto", "jonagram.InputMediaVideo"]],
         quote: bool = None,
         disable_notification: bool = None,
         reply_to_message_id: int = None
@@ -1613,8 +1613,8 @@ class Message(Object, Update):
 
         Parameters:
             media (``list``):
-                A list containing either :obj:`InputMediaPhoto <pyrogram.InputMediaPhoto>` or
-                :obj:`InputMediaVideo <pyrogram.InputMediaVideo>` objects
+                A list containing either :obj:`InputMediaPhoto <jonagram.InputMediaPhoto>` or
+                :obj:`InputMediaVideo <jonagram.InputMediaVideo>` objects
                 describing photos and videos to be sent, must include 2–10 items.
 
             quote (``bool``, *optional*):
@@ -1660,10 +1660,10 @@ class Message(Object, Update):
         disable_notification: bool = None,
         reply_to_message_id: int = None,
         reply_markup: Union[
-            "pyrogram.InlineKeyboardMarkup",
-            "pyrogram.ReplyKeyboardMarkup",
-            "pyrogram.ReplyKeyboardRemove",
-            "pyrogram.ForceReply"
+            "jonagram.InlineKeyboardMarkup",
+            "jonagram.ReplyKeyboardMarkup",
+            "jonagram.ReplyKeyboardRemove",
+            "jonagram.ForceReply"
         ] = None,
         progress: callable = None,
         progress_args: tuple = ()
@@ -1783,10 +1783,10 @@ class Message(Object, Update):
         disable_notification: bool = None,
         reply_to_message_id: int = None,
         reply_markup: Union[
-            "pyrogram.InlineKeyboardMarkup",
-            "pyrogram.ReplyKeyboardMarkup",
-            "pyrogram.ReplyKeyboardRemove",
-            "pyrogram.ForceReply"
+            "jonagram.InlineKeyboardMarkup",
+            "jonagram.ReplyKeyboardMarkup",
+            "jonagram.ReplyKeyboardRemove",
+            "jonagram.ForceReply"
         ] = None
     ) -> "Message":
         """Bound method *reply_poll* of :obj:`Message`.
@@ -1858,10 +1858,10 @@ class Message(Object, Update):
         disable_notification: bool = None,
         reply_to_message_id: int = None,
         reply_markup: Union[
-            "pyrogram.InlineKeyboardMarkup",
-            "pyrogram.ReplyKeyboardMarkup",
-            "pyrogram.ReplyKeyboardRemove",
-            "pyrogram.ForceReply"
+            "jonagram.InlineKeyboardMarkup",
+            "jonagram.ReplyKeyboardMarkup",
+            "jonagram.ReplyKeyboardRemove",
+            "jonagram.ForceReply"
         ] = None,
         progress: callable = None,
         progress_args: tuple = ()
@@ -1967,10 +1967,10 @@ class Message(Object, Update):
         disable_notification: bool = None,
         reply_to_message_id: int = None,
         reply_markup: Union[
-            "pyrogram.InlineKeyboardMarkup",
-            "pyrogram.ReplyKeyboardMarkup",
-            "pyrogram.ReplyKeyboardRemove",
-            "pyrogram.ForceReply"
+            "jonagram.InlineKeyboardMarkup",
+            "jonagram.ReplyKeyboardMarkup",
+            "jonagram.ReplyKeyboardRemove",
+            "jonagram.ForceReply"
         ] = None
     ) -> "Message":
         """Bound method *reply_venue* of :obj:`Message`.
@@ -2068,10 +2068,10 @@ class Message(Object, Update):
         disable_notification: bool = None,
         reply_to_message_id: int = None,
         reply_markup: Union[
-            "pyrogram.InlineKeyboardMarkup",
-            "pyrogram.ReplyKeyboardMarkup",
-            "pyrogram.ReplyKeyboardRemove",
-            "pyrogram.ForceReply"
+            "jonagram.InlineKeyboardMarkup",
+            "jonagram.ReplyKeyboardMarkup",
+            "jonagram.ReplyKeyboardRemove",
+            "jonagram.ForceReply"
         ] = None,
         progress: callable = None,
         progress_args: tuple = ()
@@ -2211,10 +2211,10 @@ class Message(Object, Update):
         disable_notification: bool = None,
         reply_to_message_id: int = None,
         reply_markup: Union[
-            "pyrogram.InlineKeyboardMarkup",
-            "pyrogram.ReplyKeyboardMarkup",
-            "pyrogram.ReplyKeyboardRemove",
-            "pyrogram.ForceReply"
+            "jonagram.InlineKeyboardMarkup",
+            "jonagram.ReplyKeyboardMarkup",
+            "jonagram.ReplyKeyboardRemove",
+            "jonagram.ForceReply"
         ] = None,
         progress: callable = None,
         progress_args: tuple = ()
@@ -2334,10 +2334,10 @@ class Message(Object, Update):
         disable_notification: bool = None,
         reply_to_message_id: int = None,
         reply_markup: Union[
-            "pyrogram.InlineKeyboardMarkup",
-            "pyrogram.ReplyKeyboardMarkup",
-            "pyrogram.ReplyKeyboardRemove",
-            "pyrogram.ForceReply"
+            "jonagram.InlineKeyboardMarkup",
+            "jonagram.ReplyKeyboardMarkup",
+            "jonagram.ReplyKeyboardRemove",
+            "jonagram.ForceReply"
         ] = None,
         progress: callable = None,
         progress_args: tuple = ()
@@ -2452,7 +2452,7 @@ class Message(Object, Update):
         text: str,
         parse_mode: Union[str, None] = object,
         disable_web_page_preview: bool = None,
-        reply_markup: "pyrogram.InlineKeyboardMarkup" = None
+        reply_markup: "jonagram.InlineKeyboardMarkup" = None
     ) -> "Message":
         """Bound method *edit_text* of :obj:`Message`.
 
@@ -2509,7 +2509,7 @@ class Message(Object, Update):
         self,
         caption: str,
         parse_mode: Union[str, None] = object,
-        reply_markup: "pyrogram.InlineKeyboardMarkup" = None
+        reply_markup: "jonagram.InlineKeyboardMarkup" = None
     ) -> "Message":
         """Bound method *edit_caption* of :obj:`Message`.
 
@@ -2556,7 +2556,7 @@ class Message(Object, Update):
             reply_markup=reply_markup
         )
 
-    def edit_media(self, media: InputMedia, reply_markup: "pyrogram.InlineKeyboardMarkup" = None) -> "Message":
+    def edit_media(self, media: InputMedia, reply_markup: "jonagram.InlineKeyboardMarkup" = None) -> "Message":
         """Bound method *edit_media* of :obj:`Message`.
 
         Use as a shortcut for:
@@ -2594,7 +2594,7 @@ class Message(Object, Update):
             reply_markup=reply_markup
         )
 
-    def edit_reply_markup(self, reply_markup: "pyrogram.InlineKeyboardMarkup" = None) -> "Message":
+    def edit_reply_markup(self, reply_markup: "jonagram.InlineKeyboardMarkup" = None) -> "Message":
         """Bound method *edit_reply_markup* of :obj:`Message`.
 
         Use as a shortcut for:
@@ -2894,10 +2894,10 @@ class Message(Object, Update):
             TimeoutError: In case, after clicking an inline button, the bot fails to answer within the timeout.
         """
 
-        if isinstance(self.reply_markup, pyrogram.ReplyKeyboardMarkup):
+        if isinstance(self.reply_markup, jonagram.ReplyKeyboardMarkup):
             keyboard = self.reply_markup.keyboard
             is_inline = False
-        elif isinstance(self.reply_markup, pyrogram.InlineKeyboardMarkup):
+        elif isinstance(self.reply_markup, jonagram.InlineKeyboardMarkup):
             keyboard = self.reply_markup.inline_keyboard
             is_inline = True
         else:
@@ -2953,7 +2953,7 @@ class Message(Object, Update):
 
     def retract_vote(
         self,
-    ) -> "pyrogram.Poll":
+    ) -> "jonagram.Poll":
         """Bound method *retract_vote* of :obj:`Message`.
 
         Use as a shortcut for:
@@ -3059,7 +3059,7 @@ class Message(Object, Update):
     def vote(
         self,
         option: int,
-    ) -> "pyrogram.Poll":
+    ) -> "jonagram.Poll":
         """Bound method *vote* of :obj:`Message`.
 
         Use as a shortcut for:

@@ -18,7 +18,7 @@
 
 from typing import Union, List
 
-from pyrogram.api import functions, types
+from jonagram.api import functions, types
 from ...ext import BaseClient
 
 

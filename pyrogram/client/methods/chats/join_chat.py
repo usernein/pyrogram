@@ -16,8 +16,8 @@
 #  You should have received a copy of the GNU Lesser General Public License
 #  along with Pyrogram.  If not, see <http://www.gnu.org/licenses/>.
 
-import pyrogram
-from pyrogram.api import functions, types
+import jonagram
+from jonagram.api import functions, types
 from ...ext import BaseClient
 
 
@@ -40,7 +40,7 @@ class JoinChat(BaseClient):
             .. code-block:: python
 
                 # Join chat via username
-                app.join_chat("pyrogram")
+                app.join_chat("jonagram")
 
                 # Join chat via invite link
                 app.join_chat("https://t.me/joinchat/AAAAAE0QmSW3IUmm3UFR7A")
@@ -54,9 +54,9 @@ class JoinChat(BaseClient):
                 )
             )
             if isinstance(chat.chats[0], types.Chat):
-                return pyrogram.Chat._parse_chat_chat(self, chat.chats[0])
+                return jonagram.Chat._parse_chat_chat(self, chat.chats[0])
             elif isinstance(chat.chats[0], types.Channel):
-                return pyrogram.Chat._parse_channel_chat(self, chat.chats[0])
+                return jonagram.Chat._parse_channel_chat(self, chat.chats[0])
         else:
             chat = self.send(
                 functions.channels.JoinChannel(
@@ -64,4 +64,4 @@ class JoinChat(BaseClient):
                 )
             )
 
-            return pyrogram.Chat._parse_channel_chat(self, chat.chats[0])
+            return jonagram.Chat._parse_channel_chat(self, chat.chats[0])

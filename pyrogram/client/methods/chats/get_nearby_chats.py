@@ -18,8 +18,8 @@
 
 from typing import List
 
-import pyrogram
-from pyrogram.api import functions, types
+import jonagram
+from jonagram.api import functions, types
 from ...ext import BaseClient, utils
 
 
@@ -28,7 +28,7 @@ class GetNearbyChats(BaseClient):
         self,
         latitude: float,
         longitude: float
-    ) -> List["pyrogram.Chat"]:
+    ) -> List["jonagram.Chat"]:
         """Get nearby chats.
 
         Parameters:
@@ -60,7 +60,7 @@ class GetNearbyChats(BaseClient):
         if not r.updates:
             return []
 
-        chats = pyrogram.List([pyrogram.Chat._parse_chat(self, chat) for chat in r.chats])
+        chats = jonagram.List([jonagram.Chat._parse_chat(self, chat) for chat in r.chats])
         peers = r.updates[0].peers
 
         for peer in peers:

@@ -19,8 +19,8 @@
 import logging
 from typing import Union
 
-from pyrogram.api import types, functions
-from pyrogram.client.ext import BaseClient
+from jonagram.api import types, functions
+from jonagram.client.ext import BaseClient
 
 log = logging.getLogger(__name__)
 
@@ -48,7 +48,7 @@ class GetHistoryCount(BaseClient):
         Example:
             .. code-block:: python
 
-                app.get_history_count("pyrogramchat")
+                app.get_history_count("jonagramchat")
         """
 
         r = self.send(

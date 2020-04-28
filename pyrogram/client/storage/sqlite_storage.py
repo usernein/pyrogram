@@ -23,8 +23,8 @@ from pathlib import Path
 from threading import Lock
 from typing import List, Tuple, Any
 
-from pyrogram.api import types
-from pyrogram.client.ext import utils
+from jonagram.api import types
+from jonagram.client.ext import utils
 from .storage import Storage
 
 

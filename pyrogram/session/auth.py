@@ -22,11 +22,11 @@ from hashlib import sha1
 from io import BytesIO
 from os import urandom
 
-import pyrogram
-from pyrogram.api import functions, types
-from pyrogram.api.core import TLObject, Long, Int
-from pyrogram.connection import Connection
-from pyrogram.crypto import AES, RSA, Prime
+import jonagram
+from jonagram.api import functions, types
+from jonagram.api.core import TLObject, Long, Int
+from jonagram.connection import Connection
+from jonagram.crypto import AES, RSA, Prime
 from .internals import MsgId
 
 log = logging.getLogger(__name__)
@@ -35,7 +35,7 @@ log = logging.getLogger(__name__)
 class Auth:
     MAX_RETRIES = 5
 
-    def __init__(self, client: "pyrogram.Client", dc_id: int):
+    def __init__(self, client: "jonagram.Client", dc_id: int):
         self.dc_id = dc_id
         self.test_mode = client.storage.test_mode()
         self.ipv6 = client.ipv6

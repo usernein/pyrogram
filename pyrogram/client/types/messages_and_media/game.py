@@ -16,8 +16,8 @@
 #  You should have received a copy of the GNU Lesser General Public License
 #  along with Pyrogram.  If not, see <http://www.gnu.org/licenses/>.
 
-import pyrogram
-from pyrogram.api import types
+import jonagram
+from jonagram.api import types
 from .animation import Animation
 from .photo import Photo
 from ..object import Object
@@ -51,7 +51,7 @@ class Game(Object):
     def __init__(
         self,
         *,
-        client: "pyrogram.BaseClient" = None,
+        client: "jonagram.BaseClient" = None,
         id: int,
         title: str,
         short_name: str,

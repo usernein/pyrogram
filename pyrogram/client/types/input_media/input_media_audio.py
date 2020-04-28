@@ -24,7 +24,7 @@ from . import InputMedia
 class InputMediaAudio(InputMedia):
     """An audio to be sent inside an album.
 
-    It is intended to be used with :obj:`send_media_group() <pyrogram.Client.send_media_group>`.
+    It is intended to be used with :obj:`send_media_group() <jonagram.Client.send_media_group>`.
 
     Parameters:
         media (``str``):

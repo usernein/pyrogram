@@ -18,8 +18,8 @@
 
 from typing import Callable
 
-import pyrogram
-from pyrogram.client.filters.filter import Filter
+import jonagram
+from jonagram.client.filters.filter import Filter
 from ...ext import BaseClient
 
 
@@ -31,10 +31,10 @@ class OnInlineQuery(BaseClient):
     ) -> callable:
         """Decorator for handling inline queries.
 
-        This does the same thing as :meth:`~pyrogram.Client.add_handler` using the :obj:`~pyrogram.InlineQueryHandler`.
+        This does the same thing as :meth:`~jonagram.Client.add_handler` using the :obj:`~jonagram.InlineQueryHandler`.
 
         Parameters:
-            filters (:obj:`~pyrogram.Filters`, *optional*):
+            filters (:obj:`~jonagram.Filters`, *optional*):
                 Pass one or more filters to allow only a subset of inline queries to be passed
                 in your function.
 
@@ -43,11 +43,11 @@ class OnInlineQuery(BaseClient):
         """
 
         def decorator(func: Callable) -> Callable:
-            if isinstance(self, pyrogram.Client):
-                self.add_handler(pyrogram.InlineQueryHandler(func, filters), group)
+            if isinstance(self, jonagram.Client):
+                self.add_handler(jonagram.InlineQueryHandler(func, filters), group)
             elif isinstance(self, Filter) or self is None:
                 func.handler = (
-                    pyrogram.InlineQueryHandler(func, self),
+                    jonagram.InlineQueryHandler(func, self),
                     group if filters is None else filters
                 )
 

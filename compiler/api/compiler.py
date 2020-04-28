@@ -21,7 +21,7 @@ import re
 import shutil
 
 HOME = "compiler/api"
-DESTINATION = "pyrogram/api"
+DESTINATION = "jonagram/api"
 NOTICE_PATH = "NOTICE"
 SECTION_RE = re.compile(r"---(\w+)---")
 LAYER_RE = re.compile(r"//\sLAYER\s(\d+)")
@@ -38,7 +38,7 @@ types_to_functions = {}
 constructors_to_functions = {}
 
 
-def get_docstring_arg_type(t: str, is_list: bool = False, is_pyrogram_type: bool = False):
+def get_docstring_arg_type(t: str, is_list: bool = False, is_jonagram_type: bool = False):
     if t in core_types:
         if t == "long":
             return "``int`` ``64-bit``"
@@ -54,22 +54,22 @@ def get_docstring_arg_type(t: str, is_list: bool = False, is_pyrogram_type: bool
     elif t == "true":
         return "``bool``"
     elif t == "TLObject" or t == "X":
-        return "Any object from :obj:`~pyrogram.api.types`"
+        return "Any object from :obj:`~jonagram.api.types`"
     elif t == "!X":
-        return "Any method from :obj:`~pyrogram.api.functions`"
+        return "Any method from :obj:`~jonagram.api.functions`"
     elif t.startswith("Vector"):
-        return "List of " + get_docstring_arg_type(t.split("<", 1)[1][:-1], True, is_pyrogram_type)
+        return "List of " + get_docstring_arg_type(t.split("<", 1)[1][:-1], True, is_jonagram_type)
     else:
-        if is_pyrogram_type:
-            t = "pyrogram." + t
+        if is_jonagram_type:
+            t = "jonagram." + t
 
         t = types_to_constructors.get(t, [t])
         n = len(t) - 1
 
         t = (("e" if is_list else "E") + "ither " if n else "") + ", ".join(
             ":obj:`{1} <{0}.{1}>`".format(
-                "pyrogram.types" if is_pyrogram_type else "pyrogram.api.types",
-                i.replace("pyrogram.", "")
+                "jonagram.types" if is_jonagram_type else "jonagram.api.types",
+                i.replace("jonagram.", "")
             )
             for i in t
         )
@@ -88,7 +88,7 @@ def get_references(t: str):
         n = len(t) - 1
 
         t = ", ".join(
-            ":obj:`{0} <pyrogram.api.functions.{0}>`".format(i)
+            ":obj:`{0} <jonagram.api.functions.{0}>`".format(i)
             for i in t
         )
 
@@ -178,8 +178,8 @@ def start():
     with open("{}/template/mtproto.txt".format(HOME), encoding="utf-8") as f:
         mtproto_template = f.read()
 
-    with open("{}/template/pyrogram.txt".format(HOME), encoding="utf-8") as f:
-        pyrogram_template = f.read()
+    with open("{}/template/jonagram.txt".format(HOME), encoding="utf-8") as f:
+        jonagram_template = f.read()
 
     with open(NOTICE_PATH, encoding="utf-8") as f:
         notice = []
@@ -313,7 +313,7 @@ def start():
                 docstring_args.append(
                     "{} ({}{}):\n            {}\n".format(
                         arg_name,
-                        get_docstring_arg_type(arg_type, is_pyrogram_type=True),
+                        get_docstring_arg_type(arg_type, is_jonagram_type=True),
                         ", optional" if "Optional" in docs[i] else "",
                         re.sub("Optional\. ", "", docs[i].split("§")[1].rstrip(".") + ".")
                     )
@@ -323,7 +323,7 @@ def start():
                     "{}{}: {}".format(
                         arg_name,
                         " (optional)".format(flag_number) if is_optional else "",
-                        get_docstring_arg_type(arg_type, is_pyrogram_type=c.namespace == "pyrogram")
+                        get_docstring_arg_type(arg_type, is_jonagram_type=c.namespace == "jonagram")
                     )
                 )
 
@@ -439,7 +439,7 @@ def start():
         with open("{}/{}.py".format(path, snek(c.name)), "w", encoding="utf-8") as f:
             if c.docs:
                 f.write(
-                    pyrogram_template.format(
+                    jonagram_template.format(
                         notice=notice,
                         class_name=capit(c.name),
                         docstring_args=docstring_args,
@@ -474,16 +474,16 @@ def start():
 
         for c in combinators:
             path = ".".join(filter(None, [c.section, c.namespace, capit(c.name)]))
-            f.write("\n    {}: \"pyrogram.api.{}\",".format(c.id, path))
+            f.write("\n    {}: \"jonagram.api.{}\",".format(c.id, path))
 
-        f.write("\n    0xbc799737: \"pyrogram.api.core.BoolFalse\",")
-        f.write("\n    0x997275b5: \"pyrogram.api.core.BoolTrue\",")
-        f.write("\n    0x1cb5c415: \"pyrogram.api.core.Vector\",")
-        f.write("\n    0x73f1f8dc: \"pyrogram.api.core.MsgContainer\",")
-        f.write("\n    0xae500895: \"pyrogram.api.core.FutureSalts\",")
-        f.write("\n    0x0949d9dc: \"pyrogram.api.core.FutureSalt\",")
-        f.write("\n    0x3072cfa1: \"pyrogram.api.core.GzipPacked\",")
-        f.write("\n    0x5bb8e511: \"pyrogram.api.core.Message\",")
+        f.write("\n    0xbc799737: \"jonagram.api.core.BoolFalse\",")
+        f.write("\n    0x997275b5: \"jonagram.api.core.BoolTrue\",")
+        f.write("\n    0x1cb5c415: \"jonagram.api.core.Vector\",")
+        f.write("\n    0x73f1f8dc: \"jonagram.api.core.MsgContainer\",")
+        f.write("\n    0xae500895: \"jonagram.api.core.FutureSalts\",")
+        f.write("\n    0x0949d9dc: \"jonagram.api.core.FutureSalt\",")
+        f.write("\n    0x3072cfa1: \"jonagram.api.core.GzipPacked\",")
+        f.write("\n    0x5bb8e511: \"jonagram.api.core.Message\",")
 
         f.write("\n}\n")
 
@@ -494,6 +494,6 @@ def start():
 
 if "__main__" == __name__:
     HOME = "."
-    DESTINATION = "../../pyrogram/api"
+    DESTINATION = "../../jonagram/api"
     NOTICE_PATH = "../../NOTICE"
     start()

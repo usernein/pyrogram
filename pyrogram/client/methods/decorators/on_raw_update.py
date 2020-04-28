@@ -18,7 +18,7 @@
 
 from typing import Callable
 
-import pyrogram
+import jonagram
 from ...ext import BaseClient
 
 
@@ -29,7 +29,7 @@ class OnRawUpdate(BaseClient):
     ) -> callable:
         """Decorator for handling raw updates.
 
-        This does the same thing as :meth:`~pyrogram.Client.add_handler` using the :obj:`~pyrogram.RawUpdateHandler`.
+        This does the same thing as :meth:`~jonagram.Client.add_handler` using the :obj:`~jonagram.RawUpdateHandler`.
 
         Parameters:
             group (``int``, *optional*):
@@ -37,11 +37,11 @@ class OnRawUpdate(BaseClient):
         """
 
         def decorator(func: Callable) -> Callable:
-            if isinstance(self, pyrogram.Client):
-                self.add_handler(pyrogram.RawUpdateHandler(func), group)
+            if isinstance(self, jonagram.Client):
+                self.add_handler(jonagram.RawUpdateHandler(func), group)
             else:
                 func.handler = (
-                    pyrogram.RawUpdateHandler(func),
+                    jonagram.RawUpdateHandler(func),
                     group if self is None else group
                 )
 

@@ -18,7 +18,7 @@
 
 from typing import Union, Generator
 
-import pyrogram
+import jonagram
 from ...ext import BaseClient
 
 
@@ -28,7 +28,7 @@ class IterProfilePhotos(BaseClient):
         chat_id: Union[int, str],
         offset: int = 0,
         limit: int = 0,
-    ) -> Generator["pyrogram.Photo", None, None]:
+    ) -> Generator["jonagram.Photo", None, None]:
         """Iterate through a chat or a user profile photos sequentially.
 
         This convenience method does the same as repeatedly calling :meth:`~Client.get_profile_photos` in a loop, thus

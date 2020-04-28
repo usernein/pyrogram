@@ -18,9 +18,9 @@
 
 from typing import Union
 
-import pyrogram
-from pyrogram.api import functions, types
-from pyrogram.client.ext import BaseClient, utils
+import jonagram
+from jonagram.api import functions, types
+from jonagram.client.ext import BaseClient, utils
 
 
 class SendCachedMedia(BaseClient):
@@ -35,12 +35,12 @@ class SendCachedMedia(BaseClient):
         reply_to_message_id: int = None,
         schedule_date: int = None,
         reply_markup: Union[
-            "pyrogram.InlineKeyboardMarkup",
-            "pyrogram.ReplyKeyboardMarkup",
-            "pyrogram.ReplyKeyboardRemove",
-            "pyrogram.ForceReply"
+            "jonagram.InlineKeyboardMarkup",
+            "jonagram.ReplyKeyboardMarkup",
+            "jonagram.ReplyKeyboardRemove",
+            "jonagram.ForceReply"
         ] = None
-    ) -> Union["pyrogram.Message", None]:
+    ) -> Union["jonagram.Message", None]:
         """Send any media stored on the Telegram servers using a file_id.
 
         This convenience method works with any valid file_id only.
@@ -109,7 +109,7 @@ class SendCachedMedia(BaseClient):
 
         for i in r.updates:
             if isinstance(i, (types.UpdateNewMessage, types.UpdateNewChannelMessage, types.UpdateNewScheduledMessage)):
-                return pyrogram.Message._parse(
+                return jonagram.Message._parse(
                     self, i.message,
                     {i.id: i for i in r.users},
                     {i.id: i for i in r.chats},

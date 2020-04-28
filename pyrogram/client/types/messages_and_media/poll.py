@@ -18,8 +18,8 @@
 
 from typing import List, Union
 
-import pyrogram
-from pyrogram.api import types
+import jonagram
+from jonagram.api import types
 from .poll_option import PollOption
 from ..object import Object
 from ..update import Update
@@ -60,7 +60,7 @@ class Poll(Object, Update):
     def __init__(
         self,
         *,
-        client: "pyrogram.BaseClient" = None,
+        client: "jonagram.BaseClient" = None,
         id: str,
         question: str,
         options: List[PollOption],

@@ -39,7 +39,7 @@ class CallbackQueryHandler(Handler):
         client (:obj:`Client`):
             The Client itself, useful when you want to call other API methods inside the message handler.
 
-        callback_query (:obj:`CallbackQuery <pyrogram.CallbackQuery>`):
+        callback_query (:obj:`CallbackQuery <jonagram.CallbackQuery>`):
             The received callback query.
     """
 

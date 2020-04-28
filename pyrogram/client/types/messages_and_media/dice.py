@@ -19,8 +19,8 @@
 from struct import pack
 from typing import List
 
-import pyrogram
-from pyrogram.api import types
+import jonagram
+from jonagram.api import types
 from .thumbnail import Thumbnail
 from ..object import Object
 from ...ext.utils import encode_file_id, encode_file_ref
@@ -37,7 +37,7 @@ class Dice(Object):
             Value of the dice, 1-6 for currently supported base emoji.
     """
 
-    def __init__(self, *, client: "pyrogram.BaseClient" = None, emoji: str, value: int):
+    def __init__(self, *, client: "jonagram.BaseClient" = None, emoji: str, value: int):
         super().__init__(client)
 
         self.emoji = emoji

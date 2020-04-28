@@ -18,8 +18,8 @@
 
 from typing import Union
 
-import pyrogram
-from pyrogram.api import functions, types
+import jonagram
+from jonagram.api import functions, types
 from ...ext import BaseClient
 
 
@@ -34,12 +34,12 @@ class SendMessage(BaseClient):
         reply_to_message_id: int = None,
         schedule_date: int = None,
         reply_markup: Union[
-            "pyrogram.InlineKeyboardMarkup",
-            "pyrogram.ReplyKeyboardMarkup",
-            "pyrogram.ReplyKeyboardRemove",
-            "pyrogram.ForceReply"
+            "jonagram.InlineKeyboardMarkup",
+            "jonagram.ReplyKeyboardMarkup",
+            "jonagram.ReplyKeyboardRemove",
+            "jonagram.ForceReply"
         ] = None
-    ) -> "pyrogram.Message":
+    ) -> "jonagram.Message":
         """Send text messages.
 
         Parameters:
@@ -86,7 +86,7 @@ class SendMessage(BaseClient):
                 app.send_message("haskell", "Thanks for creating **Pyrogram**!")
 
                 # Disable web page previews
-                app.send_message("me", "https://docs.pyrogram.org", disable_web_page_preview=True)
+                app.send_message("me", "https://docs.jonagram.org", disable_web_page_preview=True)
 
                 # Reply to a message using its id
                 app.send_message("me", "this is a reply", reply_to_message_id=12345)
@@ -98,7 +98,7 @@ class SendMessage(BaseClient):
                 # For bots only, send messages with keyboards attached
                 ##
 
-                from pyrogram import (
+                from jonagram import (
                     ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton)
 
                 # Send a normal keyboard
@@ -112,7 +112,7 @@ class SendMessage(BaseClient):
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [InlineKeyboardButton("Data", callback_data="hidden_callback_data")],
-                            [InlineKeyboardButton("Docs", url="https://docs.pyrogram.org")]
+                            [InlineKeyboardButton("Docs", url="https://docs.jonagram.org")]
                         ]))
         """
 
@@ -141,9 +141,9 @@ class SendMessage(BaseClient):
                 else -peer.chat_id
             )
 
-            return pyrogram.Message(
+            return jonagram.Message(
                 message_id=r.id,
-                chat=pyrogram.Chat(
+                chat=jonagram.Chat(
                     id=peer_id,
                     type="private",
                     client=self
@@ -152,7 +152,7 @@ class SendMessage(BaseClient):
                 date=r.date,
                 outgoing=r.out,
                 entities=[
-                    pyrogram.MessageEntity._parse(None, entity, {})
+                    jonagram.MessageEntity._parse(None, entity, {})
                     for entity in entities
                 ],
                 client=self
@@ -160,7 +160,7 @@ class SendMessage(BaseClient):
 
         for i in r.updates:
             if isinstance(i, (types.UpdateNewMessage, types.UpdateNewChannelMessage, types.UpdateNewScheduledMessage)):
-                return pyrogram.Message._parse(
+                return jonagram.Message._parse(
                     self, i.message,
                     {i.id: i for i in r.users},
                     {i.id: i for i in r.chats},

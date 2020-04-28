@@ -18,8 +18,8 @@
 
 from typing import List
 
-import pyrogram
-from pyrogram.api import types
+import jonagram
+from jonagram.api import types
 from .inline_query_result import InlineQueryResult
 from ..messages_and_media import Location
 from ..object import Object
@@ -52,7 +52,7 @@ class InlineQuery(Object, Update):
     def __init__(
         self,
         *,
-        client: "pyrogram.BaseClient" = None,
+        client: "jonagram.BaseClient" = None,
         id: str,
         from_user: User,
         query: str,

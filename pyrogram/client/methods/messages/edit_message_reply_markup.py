@@ -18,9 +18,9 @@
 
 from typing import Union
 
-import pyrogram
-from pyrogram.api import functions, types
-from pyrogram.client.ext import BaseClient
+import jonagram
+from jonagram.api import functions, types
+from jonagram.client.ext import BaseClient
 
 
 class EditMessageReplyMarkup(BaseClient):
@@ -28,8 +28,8 @@ class EditMessageReplyMarkup(BaseClient):
         self,
         chat_id: Union[int, str],
         message_id: int,
-        reply_markup: "pyrogram.InlineKeyboardMarkup" = None,
-    ) -> "pyrogram.Message":
+        reply_markup: "jonagram.InlineKeyboardMarkup" = None,
+    ) -> "jonagram.Message":
         """Edit only the reply markup of messages sent by the bot.
 
         Parameters:
@@ -50,7 +50,7 @@ class EditMessageReplyMarkup(BaseClient):
         Example:
             .. code-block:: python
 
-                from pyrogram import InlineKeyboardMarkup, InlineKeyboardButton
+                from jonagram import InlineKeyboardMarkup, InlineKeyboardButton
 
                 # Bots only
                 app.edit_message_reply_markup(
@@ -68,7 +68,7 @@ class EditMessageReplyMarkup(BaseClient):
 
         for i in r.updates:
             if isinstance(i, (types.UpdateEditMessage, types.UpdateEditChannelMessage)):
-                return pyrogram.Message._parse(
+                return jonagram.Message._parse(
                     self, i.message,
                     {i.id: i for i in r.users},
                     {i.id: i for i in r.chats}

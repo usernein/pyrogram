@@ -18,7 +18,7 @@
 
 from typing import Union, Generator
 
-import pyrogram
+import jonagram
 from ...ext import BaseClient
 
 
@@ -31,7 +31,7 @@ class IterHistory(BaseClient):
         offset_id: int = 0,
         offset_date: int = 0,
         reverse: bool = False
-    ) -> Generator["pyrogram.Message", None, None]:
+    ) -> Generator["jonagram.Message", None, None]:
         """Iterate through a chat history sequentially.
 
         This convenience method does the same as repeatedly calling :meth:`~Client.get_history` in a loop, thus saving
@@ -67,7 +67,7 @@ class IterHistory(BaseClient):
         Example:
             .. code-block:: python
 
-                for message in app.iter_history("pyrogram"):
+                for message in app.iter_history("jonagram"):
                     print(message.text)
         """
         offset_id = offset_id or (1 if reverse else 0)

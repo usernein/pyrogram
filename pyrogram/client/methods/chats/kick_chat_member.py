@@ -18,8 +18,8 @@
 
 from typing import Union
 
-import pyrogram
-from pyrogram.api import functions, types
+import jonagram
+from jonagram.api import functions, types
 from ...ext import BaseClient
 
 
@@ -29,7 +29,7 @@ class KickChatMember(BaseClient):
         chat_id: Union[int, str],
         user_id: Union[int, str],
         until_date: int = 0
-    ) -> Union["pyrogram.Message", bool]:
+    ) -> Union["jonagram.Message", bool]:
         """Kick a user from a group, a supergroup or a channel.
         In the case of supergroups and channels, the user will not be able to return to the group on their own using
         invite links, etc., unless unbanned first. You must be an administrator in the chat for this to work and must
@@ -99,7 +99,7 @@ class KickChatMember(BaseClient):
 
         for i in r.updates:
             if isinstance(i, (types.UpdateNewMessage, types.UpdateNewChannelMessage)):
-                return pyrogram.Message._parse(
+                return jonagram.Message._parse(
                     self, i.message,
                     {i.id: i for i in r.users},
                     {i.id: i for i in r.chats}

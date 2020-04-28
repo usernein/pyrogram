@@ -21,8 +21,8 @@ import struct
 from typing import List
 from typing import Union
 
-import pyrogram
-from pyrogram.api.types import PeerUser, PeerChat, PeerChannel
+import jonagram
+from jonagram.api.types import PeerUser, PeerChat, PeerChannel
 from . import BaseClient
 from ...api import types
 
@@ -141,15 +141,15 @@ def get_input_media_from_file_id(
         raise ValueError("Unknown media type: {}".format(file_id_str))
 
 
-def parse_messages(client, messages: types.messages.Messages, replies: int = 1) -> List["pyrogram.Message"]:
+def parse_messages(client, messages: types.messages.Messages, replies: int = 1) -> List["jonagram.Message"]:
     users = {i.id: i for i in messages.users}
     chats = {i.id: i for i in messages.chats}
 
     if not messages.messages:
-        return pyrogram.List()
+        return jonagram.List()
 
     parsed_messages = [
-        pyrogram.Message._parse(client, message, users, chats, replies=0)
+        jonagram.Message._parse(client, message, users, chats, replies=0)
         for message in messages.messages
     ]
 
@@ -171,10 +171,10 @@ def parse_messages(client, messages: types.messages.Messages, replies: int = 1) 
                     if reply.message_id == reply_id:
                         message.reply_to_message = reply
 
-    return pyrogram.List(parsed_messages)
+    return jonagram.List(parsed_messages)
 
 
-def parse_deleted_messages(client, update) -> List["pyrogram.Message"]:
+def parse_deleted_messages(client, update) -> List["jonagram.Message"]:
     messages = update.messages
     channel_id = getattr(update, "channel_id", None)
 
@@ -182,9 +182,9 @@ def parse_deleted_messages(client, update) -> List["pyrogram.Message"]:
 
     for message in messages:
         parsed_messages.append(
-            pyrogram.Message(
+            jonagram.Message(
                 message_id=message,
-                chat=pyrogram.Chat(
+                chat=jonagram.Chat(
                     id=get_channel_id(channel_id),
                     type="channel",
                     client=client
@@ -193,7 +193,7 @@ def parse_deleted_messages(client, update) -> List["pyrogram.Message"]:
             )
         )
 
-    return pyrogram.List(parsed_messages)
+    return jonagram.List(parsed_messages)
 
 
 def unpack_inline_message_id(inline_message_id: str) -> types.InputBotInlineMessageID:

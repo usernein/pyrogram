@@ -21,19 +21,19 @@ from collections import OrderedDict
 from datetime import datetime
 from json import dumps
 
-import pyrogram
+import jonagram
 
 
 class Meta(type, metaclass=type("", (type,), {"__str__": lambda _: "~hi"})):
     def __str__(self):
-        return "<class 'pyrogram.{}'>".format(self.__name__)
+        return "<class 'jonagram.{}'>".format(self.__name__)
 
 
 class Object(metaclass=Meta):
-    def __init__(self, client: "pyrogram.BaseClient" = None):
+    def __init__(self, client: "jonagram.BaseClient" = None):
         self._client = client
 
-    def bind(self, client: "pyrogram.BaseClient"):
+    def bind(self, client: "jonagram.BaseClient"):
         """Bind a Client instance to this Pyrogram Object
 
         Parameters:
@@ -52,7 +52,7 @@ class Object(metaclass=Meta):
             return repr(obj)
 
         return OrderedDict(
-            [("_", "pyrogram." + obj.__class__.__name__)]
+            [("_", "jonagram." + obj.__class__.__name__)]
             + [
                 (attr, "*" * len(getattr(obj, attr)))
                 if attr == "phone_number"
@@ -68,7 +68,7 @@ class Object(metaclass=Meta):
         return dumps(self, indent=4, default=Object.default, ensure_ascii=False)
 
     def __repr__(self) -> str:
-        return "pyrogram.{}({})".format(
+        return "jonagram.{}({})".format(
             self.__class__.__name__,
             ", ".join(
                 "{}={}".format(attr, repr(getattr(self, attr)))

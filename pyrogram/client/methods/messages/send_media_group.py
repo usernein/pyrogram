@@ -21,10 +21,10 @@ import os
 import time
 from typing import Union, List
 
-import pyrogram
-from pyrogram.api import functions, types
-from pyrogram.client.ext import BaseClient, utils
-from pyrogram.errors import FloodWait
+import jonagram
+from jonagram.api import functions, types
+from jonagram.client.ext import BaseClient, utils
+from jonagram.errors import FloodWait
 
 log = logging.getLogger(__name__)
 
@@ -34,10 +34,10 @@ class SendMediaGroup(BaseClient):
     def send_media_group(
         self,
         chat_id: Union[int, str],
-        media: List[Union["pyrogram.InputMediaPhoto", "pyrogram.InputMediaVideo"]],
+        media: List[Union["jonagram.InputMediaPhoto", "jonagram.InputMediaVideo"]],
         disable_notification: bool = None,
         reply_to_message_id: int = None
-    ) -> List["pyrogram.Message"]:
+    ) -> List["jonagram.Message"]:
         """Send a group of photos or videos as an album.
 
         Parameters:
@@ -62,7 +62,7 @@ class SendMediaGroup(BaseClient):
         Example:
             .. code-block:: python
 
-                from pyrogram import InputMediaPhoto, InputMediaVideo
+                from jonagram import InputMediaPhoto, InputMediaVideo
 
                 app.send_media_group(
                     "me",
@@ -76,7 +76,7 @@ class SendMediaGroup(BaseClient):
         multi_media = []
 
         for i in media:
-            if isinstance(i, pyrogram.InputMediaPhoto):
+            if isinstance(i, jonagram.InputMediaPhoto):
                 if os.path.exists(i.media):
                     while True:
                         try:
@@ -120,7 +120,7 @@ class SendMediaGroup(BaseClient):
                     )
                 else:
                     media = utils.get_input_media_from_file_id(i.media, i.file_ref, 2)
-            elif isinstance(i, pyrogram.InputMediaVideo):
+            elif isinstance(i, jonagram.InputMediaVideo):
                 if os.path.exists(i.media):
                     while True:
                         try:

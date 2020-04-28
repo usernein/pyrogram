@@ -16,11 +16,11 @@
 #  You should have received a copy of the GNU Lesser General Public License
 #  along with Pyrogram.  If not, see <http://www.gnu.org/licenses/>.
 
-import pyrogram
+import jonagram
 
-from pyrogram.api import types
-from pyrogram.client.types.object import Object
-from pyrogram.client.types.user_and_chats import User
+from jonagram.api import types
+from jonagram.client.types.object import Object
+from jonagram.client.types.user_and_chats import User
 
 
 class GameHighScore(Object):
@@ -40,7 +40,7 @@ class GameHighScore(Object):
     def __init__(
         self,
         *,
-        client: "pyrogram.BaseClient" = None,
+        client: "jonagram.BaseClient" = None,
         user: User,
         score: int,
         position: int = None

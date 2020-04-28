@@ -18,8 +18,8 @@
 
 from typing import Union
 
-from pyrogram.api import functions
-from pyrogram.client.ext import BaseClient
+from jonagram.api import functions
+from jonagram.client.ext import BaseClient
 
 
 class SendInlineBotResult(BaseClient):
@@ -33,7 +33,7 @@ class SendInlineBotResult(BaseClient):
         hide_via: bool = None
     ):
         """Send an inline bot result.
-        Bot results can be retrieved using :obj:`get_inline_bot_results <pyrogram.Client.get_inline_bot_results>`
+        Bot results can be retrieved using :obj:`get_inline_bot_results <jonagram.Client.get_inline_bot_results>`
 
         Parameters:
             chat_id (``int`` | ``str``):

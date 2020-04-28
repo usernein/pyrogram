@@ -16,8 +16,8 @@
 #  You should have received a copy of the GNU Lesser General Public License
 #  along with Pyrogram.  If not, see <http://www.gnu.org/licenses/>.
 
-import pyrogram
-from pyrogram.api import types
+import jonagram
+from jonagram.api import types
 from ..object import Object
 
 
@@ -86,7 +86,7 @@ class WebPage(Object):
     def __init__(
         self,
         *,
-        client: "pyrogram.BaseClient" = None,
+        client: "jonagram.BaseClient" = None,
         id: str,
         url: str,
         display_url: str,
@@ -94,11 +94,11 @@ class WebPage(Object):
         site_name: str = None,
         title: str = None,
         description: str = None,
-        audio: "pyrogram.Audio" = None,
-        document: "pyrogram.Document" = None,
-        photo: "pyrogram.Photo" = None,
-        animation: "pyrogram.Animation" = None,
-        video: "pyrogram.Video" = None,
+        audio: "jonagram.Audio" = None,
+        document: "jonagram.Document" = None,
+        photo: "jonagram.Photo" = None,
+        animation: "jonagram.Animation" = None,
+        video: "jonagram.Video" = None,
         embed_url: str = None,
         embed_type: str = None,
         embed_width: int = None,
@@ -136,7 +136,7 @@ class WebPage(Object):
         video = None
 
         if isinstance(webpage.photo, types.Photo):
-            photo = pyrogram.Photo._parse(client, webpage.photo)
+            photo = jonagram.Photo._parse(client, webpage.photo)
 
         doc = webpage.document
 
@@ -151,18 +151,18 @@ class WebPage(Object):
 
             if types.DocumentAttributeAudio in attributes:
                 audio_attributes = attributes[types.DocumentAttributeAudio]
-                audio = pyrogram.Audio._parse(client, doc, audio_attributes, file_name)
+                audio = jonagram.Audio._parse(client, doc, audio_attributes, file_name)
 
             elif types.DocumentAttributeAnimated in attributes:
                 video_attributes = attributes.get(types.DocumentAttributeVideo, None)
-                animation = pyrogram.Animation._parse(client, doc, video_attributes, file_name)
+                animation = jonagram.Animation._parse(client, doc, video_attributes, file_name)
 
             elif types.DocumentAttributeVideo in attributes:
                 video_attributes = attributes[types.DocumentAttributeVideo]
-                video = pyrogram.Video._parse(client, doc, video_attributes, file_name)
+                video = jonagram.Video._parse(client, doc, video_attributes, file_name)
 
             else:
-                document = pyrogram.Document._parse(client, doc, file_name)
+                document = jonagram.Document._parse(client, doc, file_name)
 
         return WebPage(
             id=str(webpage.id),

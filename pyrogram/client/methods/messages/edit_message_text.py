@@ -18,9 +18,9 @@
 
 from typing import Union
 
-import pyrogram
-from pyrogram.api import functions, types
-from pyrogram.client.ext import BaseClient
+import jonagram
+from jonagram.api import functions, types
+from jonagram.client.ext import BaseClient
 
 
 class EditMessageText(BaseClient):
@@ -31,8 +31,8 @@ class EditMessageText(BaseClient):
         text: str,
         parse_mode: Union[str, None] = object,
         disable_web_page_preview: bool = None,
-        reply_markup: "pyrogram.InlineKeyboardMarkup" = None
-    ) -> "pyrogram.Message":
+        reply_markup: "jonagram.InlineKeyboardMarkup" = None
+    ) -> "jonagram.Message":
         """Edit the text of messages.
 
         Parameters:
@@ -87,7 +87,7 @@ class EditMessageText(BaseClient):
 
         for i in r.updates:
             if isinstance(i, (types.UpdateEditMessage, types.UpdateEditChannelMessage)):
-                return pyrogram.Message._parse(
+                return jonagram.Message._parse(
                     self, i.message,
                     {i.id: i for i in r.users},
                     {i.id: i for i in r.chats}

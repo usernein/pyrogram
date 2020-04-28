@@ -18,7 +18,7 @@
 
 from typing import Union
 
-from pyrogram.api.types import (
+from jonagram.api.types import (
     KeyboardButtonUrl, KeyboardButtonCallback,
     KeyboardButtonSwitchInline, KeyboardButtonGame
 )

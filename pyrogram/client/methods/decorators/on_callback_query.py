@@ -18,8 +18,8 @@
 
 from typing import Callable
 
-import pyrogram
-from pyrogram.client.filters.filter import Filter
+import jonagram
+from jonagram.client.filters.filter import Filter
 from ...ext import BaseClient
 
 
@@ -31,11 +31,11 @@ class OnCallbackQuery(BaseClient):
     ) -> callable:
         """Decorator for handling callback queries.
 
-        This does the same thing as :meth:`~pyrogram.Client.add_handler` using the
-        :obj:`~pyrogram.CallbackQueryHandler`.
+        This does the same thing as :meth:`~jonagram.Client.add_handler` using the
+        :obj:`~jonagram.CallbackQueryHandler`.
 
         Parameters:
-            filters (:obj:`~pyrogram.Filters`, *optional*):
+            filters (:obj:`~jonagram.Filters`, *optional*):
                 Pass one or more filters to allow only a subset of callback queries to be passed
                 in your function.
 
@@ -44,11 +44,11 @@ class OnCallbackQuery(BaseClient):
         """
 
         def decorator(func: Callable) -> Callable:
-            if isinstance(self, pyrogram.Client):
-                self.add_handler(pyrogram.CallbackQueryHandler(func, filters), group)
+            if isinstance(self, jonagram.Client):
+                self.add_handler(jonagram.CallbackQueryHandler(func, filters), group)
             elif isinstance(self, Filter) or self is None:
                 func.handler = (
-                    pyrogram.CallbackQueryHandler(func, self),
+                    jonagram.CallbackQueryHandler(func, self),
                     group if filters is None else filters
                 )
 

@@ -18,15 +18,15 @@
 
 from typing import List
 
-import pyrogram
-from pyrogram.api import functions
+import jonagram
+from jonagram.api import functions
 from ...ext import BaseClient
 
 
 class AddContacts(BaseClient):
     def add_contacts(
         self,
-        contacts: List["pyrogram.InputPhoneContact"]
+        contacts: List["jonagram.InputPhoneContact"]
     ):
         """Add contacts to your Telegram address book.
 
@@ -40,7 +40,7 @@ class AddContacts(BaseClient):
         Example:
             .. code-block:: python
 
-                from pyrogram import InputPhoneContact
+                from jonagram import InputPhoneContact
 
                 app.add_contacts([
                     InputPhoneContact("39123456789", "Foo"),

@@ -21,9 +21,9 @@ from datetime import datetime
 from importlib import import_module
 from typing import Type
 
-from pyrogram.api.types import RpcError as RawRPCError
+from jonagram.api.types import RpcError as RawRPCError
 
-from pyrogram.api.core import TLObject
+from jonagram.api.core import TLObject
 from .exceptions.all import exceptions
 
 
@@ -67,7 +67,7 @@ class RPCError(Exception):
 
         if error_id not in exceptions[error_code]:
             raise getattr(
-                import_module("pyrogram.errors"),
+                import_module("jonagram.errors"),
                 exceptions[error_code]["_"]
             )(x="[{} {}]".format(error_code, error_message),
               rpc_name=rpc_name,
@@ -77,7 +77,7 @@ class RPCError(Exception):
         x = x.group(1) if x is not None else x
 
         raise getattr(
-            import_module("pyrogram.errors"),
+            import_module("jonagram.errors"),
             exceptions[error_code][error_id]
         )(x=x,
           rpc_name=rpc_name,

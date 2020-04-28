@@ -6,7 +6,7 @@ This page is about Pyrogram types. All types listed here are accessible through 
 .. code-block:: python
     :emphasize-lines: 1
 
-    from pyrogram import User, Message, ...
+    from jonagram import User, Message, ...
 
 .. note::
 
@@ -19,7 +19,7 @@ This page is about Pyrogram types. All types listed here are accessible through 
 
 -----
 
-.. currentmodule:: pyrogram
+.. currentmodule:: jonagram
 
 Users & Chats
 -------------

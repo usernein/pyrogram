@@ -18,9 +18,9 @@
 
 from typing import Union, List
 
-import pyrogram
-from pyrogram.api import functions, types
-from pyrogram.client.ext import utils
+import jonagram
+from jonagram.api import functions, types
+from jonagram.client.ext import utils
 from ...ext import BaseClient
 
 
@@ -30,7 +30,7 @@ class GetProfilePhotos(BaseClient):
         chat_id: Union[int, str],
         offset: int = 0,
         limit: int = 100
-    ) -> List["pyrogram.Photo"]:
+    ) -> List["jonagram.Photo"]:
         """Get a list of profile pictures for a user or a chat.
 
         Parameters:
@@ -84,7 +84,7 @@ class GetProfilePhotos(BaseClient):
                 )
             )
 
-            return pyrogram.List([message.new_chat_photo for message in r][:limit])
+            return jonagram.List([message.new_chat_photo for message in r][:limit])
         else:
             r = self.send(
                 functions.photos.GetUserPhotos(
@@ -95,4 +95,4 @@ class GetProfilePhotos(BaseClient):
                 )
             )
 
-            return pyrogram.List(pyrogram.Photo._parse(self, photo) for photo in r.photos)
+            return jonagram.List(jonagram.Photo._parse(self, photo) for photo in r.photos)

@@ -18,9 +18,9 @@
 
 from typing import Union
 
-import pyrogram
-from pyrogram.api import functions
-from pyrogram.client.ext import BaseClient, utils
+import jonagram
+from jonagram.api import functions
+from jonagram.client.ext import BaseClient, utils
 
 
 class EditInlineText(BaseClient):
@@ -30,7 +30,7 @@ class EditInlineText(BaseClient):
         text: str,
         parse_mode: Union[str, None] = object,
         disable_web_page_preview: bool = None,
-        reply_markup: "pyrogram.InlineKeyboardMarkup" = None
+        reply_markup: "jonagram.InlineKeyboardMarkup" = None
     ) -> bool:
         """Edit the text of inline messages.
 

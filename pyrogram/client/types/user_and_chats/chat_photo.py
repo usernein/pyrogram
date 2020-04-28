@@ -18,9 +18,9 @@
 
 from struct import pack
 
-import pyrogram
-from pyrogram.api import types
-from pyrogram.client.ext import utils
+import jonagram
+from jonagram.api import types
+from jonagram.client.ext import utils
 from ..object import Object
 from ...ext.utils import encode_file_id
 
@@ -41,7 +41,7 @@ class ChatPhoto(Object):
     def __init__(
         self,
         *,
-        client: "pyrogram.BaseClient" = None,
+        client: "jonagram.BaseClient" = None,
         small_file_id: str,
         big_file_id: str
     ):

@@ -20,9 +20,9 @@ from functools import lru_cache
 from struct import pack
 from typing import List
 
-import pyrogram
-from pyrogram.api import types, functions
-from pyrogram.errors import StickersetInvalid
+import jonagram
+from jonagram.api import types, functions
+from jonagram.errors import StickersetInvalid
 from .thumbnail import Thumbnail
 from ..object import Object
 from ...ext.utils import encode_file_id, encode_file_ref
@@ -74,7 +74,7 @@ class Sticker(Object):
     def __init__(
         self,
         *,
-        client: "pyrogram.BaseClient" = None,
+        client: "jonagram.BaseClient" = None,
         file_id: str,
         file_ref: str,
         width: int,
